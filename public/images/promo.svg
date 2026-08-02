@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Promoção Combo Família">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Reserve seu almoço no Zap">
   <defs>
     <linearGradient id="p" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#e67e22"/>
-      <stop offset="1" stop-color="#c0392b"/>
+      <stop offset="0" stop-color="#e8a33d"/>
+      <stop offset="1" stop-color="#b0201f"/>
     </linearGradient>
   </defs>
   <rect width="900" height="600" fill="url(#p)"/>
-  <text x="450" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="60" fill="#fff" text-anchor="middle" font-weight="800">COMBO FAMÍLIA</text>
-  <text x="450" y="340" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#fff" opacity="0.95" text-anchor="middle">Troque esta imagem pelo /admin</text>
+  <text x="450" y="300" font-family="Georgia, serif" font-size="120" fill="#fff" text-anchor="middle">🍗</text>
+  <text x="450" y="380" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#fff" opacity="0.9" text-anchor="middle">foto do prato / combo</text>
 </svg>

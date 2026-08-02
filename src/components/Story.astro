@@ -1,0 +1,22 @@
+---
+import { whatsappLink } from '../lib/whatsapp';
+interface Props { whatsapp: string; mensagem: string; }
+const { whatsapp, mensagem } = Astro.props;
+const waHref = whatsappLink(whatsapp, mensagem);
+---
+<section class="story section" id="historia">
+  <div class="container">
+    <div class="imgs">
+      <img src="/images/hero.svg" alt="Frango na brasa" loading="lazy" />
+      <img src="/images/menu/costela.svg" alt="Costela assada" loading="lazy" />
+      <img src="/images/menu/frango-inteiro.svg" alt="Frango inteiro" loading="lazy" />
+    </div>
+    <div>
+      <div class="kicker">Nossa história</div>
+      <h2>Tempero de família, assado na brasa</h2>
+      <p>Cada frango é temperado com a receita que passa de geração em geração e assado lentamente na brasa, conservando a maciez e o sabor de verdade.</p>
+      <p>Somos um negócio de família em Palmas e tratamos cada pedido como se fosse para a nossa própria mesa.</p>
+      <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">💬 Fazer meu pedido</a>
+    </div>
+  </div>
+</section>

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" role="img" aria-label="Prato">
-  <rect width="600" height="450" fill="#5a3b1c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" role="img" aria-label="Maionese">
+  <rect width="600" height="450" fill="#7d6a2c"/>
   <rect width="600" height="450" fill="url(#g)"/>
   <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.28"/></linearGradient></defs>
   <circle cx="300" cy="200" r="96" fill="#ffffff" opacity="0.10"/>
-  <text x="300" y="212" font-family="Georgia, serif" font-size="30" fill="#f7e6c4" text-anchor="middle" font-weight="700">Prato</text>
+  <text x="300" y="212" font-family="Georgia, serif" font-size="30" fill="#f7e6c4" text-anchor="middle" font-weight="700">Maionese</text>
   <text x="300" y="410" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#f7e6c4" opacity="0.7" text-anchor="middle">sua foto aqui</text>
 </svg>

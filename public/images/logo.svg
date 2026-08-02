@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Logo Frango da Família">
+  <rect width="200" height="200" rx="24" fill="#3a2114"/>
+  <circle cx="100" cy="86" r="52" fill="#e8a33d"/>
+  <text x="100" y="104" font-size="52" text-anchor="middle">🍗</text>
+  <text x="100" y="168" font-family="Georgia, serif" font-size="22" fill="#f2d79a" text-anchor="middle" font-weight="700">Família</text>
+</svg>

@@ -1,0 +1,24 @@
+---
+const reviews = [
+  { t: 'Melhor frango assado que já comi em Palmas. O tempero é outro nível!', w: 'Cliente satisfeito' },
+  { t: 'Peço todo domingo pelo Zap, sempre quentinho e na hora certa.', w: 'Cliente fiel' },
+  { t: 'A costela desmancha na boca e as porções são ótimas. Recomendo!', w: 'Cliente' },
+];
+---
+<section class="reviews section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="kicker">Quem prova, aprova</div>
+      <h2>O que dizem nossos clientes</h2>
+    </div>
+    <div class="rev-grid">
+      {reviews.map((r) => (
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          <p>“{r.t}”</p>
+          <div class="who">— {r.w}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

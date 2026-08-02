@@ -3,60 +3,89 @@ import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import TopBar from '../components/TopBar.astro';
 import Hero from '../components/Hero.astro';
+import Chips from '../components/Chips.astro';
 import MenuSection from '../components/MenuSection.astro';
-import Promo from '../components/Promo.astro';
+import Combo from '../components/Combo.astro';
+import Story from '../components/Story.astro';
+import Reviews from '../components/Reviews.astro';
+import Instagram from '../components/Instagram.astro';
 import Info from '../components/Info.astro';
 import { whatsappLink } from '../lib/whatsapp';
+import { buildSchedule, isOpenNow, todayHorario } from '../lib/hours';
 
-// Informações do negócio (arquivo único editável pelo /admin).
-const infoEntry = await getEntry('site', 'info');
-const info = infoEntry.data;
-
-// Itens do cardápio — apenas os disponíveis.
+const info = (await getEntry('site', 'info')).data;
 const menuEntries = await getCollection('menu', ({ data }) => data.disponivel !== false);
 const itens = menuEntries.map((e) => e.data);
 
+const ordemCategorias = ['Frangos e Carnes', 'Porções'];
+const categoriasPresentes = [...new Set(itens.map((i) => i.categoria))]
+  .sort((a, b) => {
+    const ia = ordemCategorias.indexOf(a), ib = ordemCategorias.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+
+const schedule = buildSchedule(info.horarios);
+const openNow = isOpenNow(schedule);
+const todayHoras = todayHorario(info.horarios);
+const dayText = Array.from({ length: 7 }, (_, wd) => {
+  const fake = new Date(2024, 0, 7 + wd); // 2024-01-07 é domingo (wd 0)
+  return todayHorario(info.horarios, fake);
+});
+
 const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
 ---
-<Base title="Frango da Família — Frango assado em Palmas - TO">
-  <TopBar />
-
+<Base title="Frango da Família — Frango assado na brasa em Palmas - TO">
+  <TopBar logo={info.logo} openNow={openNow} />
   <Hero
     tagline={info.tagline}
     imagem={info.hero_imagem}
     whatsapp={info.whatsapp}
     mensagem={info.mensagem_whatsapp}
-  />
-
-  <MenuSection
-    itens={itens}
-    whatsapp={info.whatsapp}
-    mensagemBase={info.mensagem_whatsapp}
-  />
-
-  <Promo
-    titulo={info.promo_titulo}
-    texto={info.promo_texto}
-    imagem={info.promo_imagem}
-    whatsapp={info.whatsapp}
-    mensagem={`${info.mensagem_whatsapp} ${info.promo_titulo}`}
-  />
-
-  <Info
-    horarios={info.horarios}
+    todayHoras={todayHoras}
     endereco={info.endereco}
-    mapaUrl={info.mapa_url}
     telefone={info.telefone}
   />
+  <Chips categorias={categoriasPresentes} />
+  <MenuSection itens={itens} whatsapp={info.whatsapp} mensagemBase={info.mensagem_whatsapp} ordemCategorias={ordemCategorias} />
+  <Combo titulo={info.promo_titulo} texto={info.promo_texto} imagem={info.promo_imagem} whatsapp={info.whatsapp} mensagem={`${info.mensagem_whatsapp} ${info.promo_titulo}`} />
+  <Story whatsapp={info.whatsapp} mensagem={info.mensagem_whatsapp} />
+  <Reviews />
+  <Instagram handle={info.instagram_handle} url={info.instagram_url} embed={info.instagram_embed} />
+  <Info horarios={info.horarios} endereco={info.endereco} mapaUrl={info.mapa_url} telefone={info.telefone} whatsapp={info.whatsapp} whatsapp2={info.whatsapp2} mensagem={info.mensagem_whatsapp} />
 
   <footer class="site">
     <div>🍗 <strong>Frango da Família</strong> — Palmas, Tocantins</div>
-    <div class="small">
-      {info.endereco}
-    </div>
-    <div class="small">Feito com carinho. Peça pelo WhatsApp!</div>
+    <div class="small">{info.endereco}</div>
+    <div class="small">{info.instagram_handle} · {info.telefone}</div>
+    <div class="cnpj">Feito com carinho. Peça pelo WhatsApp!</div>
   </footer>
 
-  <!-- Botão flutuante do WhatsApp -->
   <a class="fab" href={waHeroHref} target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp">💬</a>
+
+  <script define:vars={{ schedule, dayText }}>
+    (function () {
+      function nowTO() {
+        const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Araguaina', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+        const map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+        const wd = map[p.find((x) => x.type === 'weekday').value];
+        let h = parseInt(p.find((x) => x.type === 'hour').value, 10);
+        if (h === 24) h = 0;
+        const m = parseInt(p.find((x) => x.type === 'minute').value, 10);
+        return { wd, mins: h * 60 + m };
+      }
+      const { wd, mins } = nowTO();
+      const intervals = (schedule && schedule[wd]) || [];
+      const open = intervals.some((i) => mins >= i.start && mins < i.end);
+      document.querySelectorAll('[data-openbadge]').forEach((el) => {
+        el.classList.toggle('open', open);
+        el.classList.toggle('closed', !open);
+        const dot = el.querySelector('.dot');
+        el.textContent = open ? 'Aberto agora' : 'Fechado agora';
+        if (dot) el.prepend(dot);
+      });
+      document.querySelectorAll('[data-today-horas]').forEach((el) => {
+        if (dayText && dayText[wd]) el.textContent = dayText[wd];
+      });
+    })();
+  </script>
 </Base>

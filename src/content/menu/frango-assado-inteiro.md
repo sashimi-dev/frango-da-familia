@@ -1,8 +1,8 @@
 ---
-nome: Frango Assado Inteiro
-descricao: Frango inteiro assado na brasa, temperado com o tempero especial da casa. Serve de 2 a 3 pessoas.
-preco: "45,00"
-categoria: Frango
+nome: Frango Inteiro
+descricao: Frango inteiro assado na brasa, com o tempero especial da casa. Serve a família toda.
+preco: "50,00"
+categoria: Frangos e Carnes
 foto: /images/menu/frango-inteiro.svg
 ordem: 1
 disponivel: true

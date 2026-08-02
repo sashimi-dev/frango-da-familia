@@ -37,8 +37,8 @@ collections:
       - name: categoria
         label: "Categoria"
         widget: select
-        options: ["Frango", "Acompanhamentos", "Bebidas", "Sobremesas"]
-        default: "Frango"
+        options: ["Frangos e Carnes", "Porções", "Bebidas", "Sobremesas"]
+        default: "Frangos e Carnes"
       - { name: foto, label: "Foto do prato", widget: image, required: false }
       - { name: ordem, label: "Ordem de exibição", widget: number, default: 99, value_type: int, hint: "Menor aparece primeiro dentro da categoria." }
       - { name: disponivel, label: "Disponível?", widget: boolean, default: true }
@@ -54,7 +54,8 @@ collections:
         file: "src/content/site/info.json"
         fields:
           - { name: tagline, label: "Frase de destaque (hero)", widget: string }
-          - { name: whatsapp, label: "WhatsApp (só números)", widget: string, hint: "Formato 55 + DDD + número. Ex.: 5563999999999" }
+          - { name: whatsapp, label: "WhatsApp principal (só números)", widget: string, hint: "Formato 55 + DDD + número. Ex.: 5563992553014" }
+          - { name: whatsapp2, label: "WhatsApp 2 (só números)", widget: string, required: false }
           - { name: mensagem_whatsapp, label: "Mensagem inicial do WhatsApp", widget: string }
           - { name: telefone, label: "Telefone (exibição)", widget: string, required: false }
           - { name: endereco, label: "Endereço", widget: text }
@@ -67,6 +68,10 @@ collections:
               - { name: dias, label: "Dias", widget: string, hint: "Ex.: Terça a Sexta" }
               - { name: horario, label: "Horário", widget: string, hint: "Ex.: 11h às 22h" }
           - { name: hero_imagem, label: "Imagem principal (hero)", widget: image, required: false }
-          - { name: promo_titulo, label: "Promoção — título", widget: string, required: false }
-          - { name: promo_texto, label: "Promoção — texto", widget: text, required: false }
-          - { name: promo_imagem, label: "Promoção — imagem", widget: image, required: false }
+          - { name: logo, label: "Logo", widget: image, required: false }
+          - { name: promo_titulo, label: "Destaque — título", widget: string, required: false }
+          - { name: promo_texto, label: "Destaque — texto", widget: text, required: false }
+          - { name: promo_imagem, label: "Destaque — imagem", widget: image, required: false }
+          - { name: instagram_handle, label: "Instagram (@usuário)", widget: string, required: false }
+          - { name: instagram_url, label: "Instagram (link do perfil)", widget: string, required: false }
+          - { name: instagram_embed, label: "Instagram — código do widget (SnapWidget/Behold)", widget: text, required: false, hint: "Cole aqui o código de incorporação. Deixe vazio para mostrar a grade padrão." }

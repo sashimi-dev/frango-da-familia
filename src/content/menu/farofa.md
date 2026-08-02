@@ -1,9 +1,9 @@
 ---
-nome: Farofa da Casa
-descricao: Farofa crocante com temperos especiais e um toque de bacon.
+nome: Batata Assada 500 ml
+descricao: Batatas assadas douradas e temperadas. Porção de 500 ml.
 preco: "10,00"
-categoria: Acompanhamentos
-foto: /images/menu/farofa.svg
+categoria: Porções
+foto: /images/menu/batata-assada.svg
 ordem: 2
 disponivel: true
 ---

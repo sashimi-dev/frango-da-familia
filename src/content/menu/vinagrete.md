@@ -1,9 +1,9 @@
 ---
-nome: Vinagrete
-descricao: Vinagrete fresquinho de tomate, cebola e cheiro-verde. Acompanhamento perfeito para o frango.
-preco: "8,00"
-categoria: Acompanhamentos
-foto: /images/menu/vinagrete.svg
+nome: Maionese 500 ml
+descricao: Maionese temperada da casa, cremosa e no ponto. Porção de 500 ml.
+preco: "16,00"
+categoria: Porções
+foto: /images/menu/maionese.svg
 ordem: 3
 disponivel: true
 ---

@@ -1,34 +1,41 @@
 ---
+import { whatsappLink } from '../lib/whatsapp';
 interface Horario { dias: string; horario: string; }
 interface Props {
-  horarios: Horario[];
-  endereco: string;
-  mapaUrl: string;
-  telefone: string;
+  horarios: Horario[]; endereco: string; mapaUrl: string;
+  telefone: string; whatsapp: string; whatsapp2: string; mensagem: string;
 }
-const { horarios, endereco, mapaUrl, telefone } = Astro.props;
+const { horarios, endereco, mapaUrl, telefone, whatsapp, whatsapp2, mensagem } = Astro.props;
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(endereco)}&output=embed`;
+const wa1 = whatsappLink(whatsapp, mensagem);
+const wa2 = whatsapp2 ? whatsappLink(whatsapp2, mensagem) : '';
 ---
-<section class="section" id="info">
+<section class="info section" id="info">
   <div class="container">
-    <h2>Horários e Endereço</h2>
-    <p class="sub">Estamos em Palmas - TO. Venha retirar ou peça pelo WhatsApp.</p>
-    <div class="info-grid">
+    <div class="sec-head">
+      <div class="kicker">Onde e quando</div>
+      <h2>Horários e endereço</h2>
+      <p>Retirada no local, no Setor Jardim do Porto — Palmas, TO.</p>
+    </div>
+    <div class="container-grid">
       <div class="info-card">
-        <h3>🕒 Horário de funcionamento</h3>
+        <h3>🕒 Horários</h3>
         <ul class="hours">
           {horarios.map((h) => (
-            <li><span class="dias">{h.dias}</span><span class="horario">{h.horario}</span></li>
+            <li><span>{h.dias}</span><span class="h">{h.horario}</span></li>
           ))}
         </ul>
       </div>
       <div class="info-card">
-        <h3>📍 Onde estamos</h3>
+        <h3>📍 Contato e retirada</h3>
         <p class="addr">{endereco}</p>
-        {mapaUrl && (
-          <a class="btn btn-wa" style="background:var(--brand)" href={mapaUrl} target="_blank" rel="noopener">Ver no mapa</a>
-        )}
-        {telefone && <p style="margin-top:1rem;color:var(--muted)">📞 {telefone}</p>}
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a class="btn btn-wa" href={wa1} target="_blank" rel="noopener">💬 {telefone || 'WhatsApp 1'}</a>
+          {wa2 && <a class="btn btn-wa" href={wa2} target="_blank" rel="noopener">💬 WhatsApp 2</a>}
+          {mapaUrl && <a class="btn btn-gold" href={mapaUrl} target="_blank" rel="noopener">Abrir no Google Maps</a>}
+        </div>
       </div>
+      <iframe class="map" src={mapEmbed} loading="lazy" title="Mapa — Frango da Família" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>

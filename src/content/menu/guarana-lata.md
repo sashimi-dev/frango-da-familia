@@ -1,9 +1,9 @@
 ---
-nome: Refrigerante Lata
-descricao: Lata gelada de 350ml. Consulte os sabores disponíveis.
-preco: "6,00"
-categoria: Bebidas
-foto: /images/menu/lata.svg
-ordem: 2
-disponivel: true
+nome: (não usar)
+descricao: Item antigo. Pode apagar pelo /admin no ícone de lixeira.
+preco: "0,00"
+categoria: Porções
+foto: /images/menu/placeholder.svg
+ordem: 99
+disponivel: false
 ---

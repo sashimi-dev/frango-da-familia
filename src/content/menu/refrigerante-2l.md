@@ -1,9 +1,9 @@
 ---
-nome: Refrigerante 2L
-descricao: Refrigerante gelado de 2 litros. Consulte os sabores disponíveis.
-preco: "12,00"
-categoria: Bebidas
-foto: /images/menu/refrigerante.svg
-ordem: 1
-disponivel: true
+nome: (não usar)
+descricao: Item antigo. Pode apagar pelo /admin no ícone de lixeira.
+preco: "0,00"
+categoria: Porções
+foto: /images/menu/placeholder.svg
+ordem: 98
+disponivel: false
 ---

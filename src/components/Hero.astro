@@ -1,26 +1,30 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
-
 interface Props {
-  tagline: string;
-  imagem: string;
-  whatsapp: string;
-  mensagem: string;
+  tagline: string; imagem: string; whatsapp: string; mensagem: string;
+  todayHoras: string; endereco: string; telefone: string;
 }
-const { tagline, imagem, whatsapp, mensagem } = Astro.props;
+const { tagline, imagem, whatsapp, mensagem, todayHoras, endereco, telefone } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
+const bairro = endereco.split('—').pop()?.trim() || endereco;
 ---
 <section class="hero" id="topo">
   <img class="bg" src={imagem} alt="Frango assado na brasa" width="1200" height="800" />
   <div class="scrim"></div>
-  <div class="inner">
-    <h1>Frango da Família</h1>
-    <p class="tagline">{tagline}</p>
-    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
-      <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">
-        <span aria-hidden="true">💬</span> Pedir pelo WhatsApp
-      </a>
-      <a class="btn btn-ghost" href="#cardapio">Ver cardápio</a>
+  <div class="container">
+    <div class="inner">
+      <span class="eyebrow">🔥 Assado na brasa • Palmas - TO</span>
+      <h1>O frango assado que sua família vai amar</h1>
+      <p class="tag">{tagline}</p>
+      <div class="cta">
+        <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">💬 Pedir pelo WhatsApp</a>
+        <a class="btn btn-ghost" href="#cardapio">Ver cardápio</a>
+      </div>
+      <div class="meta">
+        <div><span>Hoje</span><b data-today-horas>{todayHoras}</b></div>
+        <div><span>Retirada</span><b>{bairro}</b></div>
+        {telefone && <div><span>Pedidos</span><b>{telefone}</b></div>}
+      </div>
     </div>
   </div>
 </section>

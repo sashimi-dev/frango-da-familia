@@ -1,13 +1,23 @@
 ---
+interface Props { logo: string; openNow: boolean; }
+const { logo, openNow } = Astro.props;
 ---
 <header class="topbar">
   <div class="container">
-    <a class="brandmark" href="#topo"><span class="logo">🍗</span> Frango da Família</a>
+    <a class="brandmark" href="#topo">
+      <img src={logo} alt="Frango da Família" width="42" height="42" />
+      Frango da Família
+    </a>
     <nav class="navlinks">
       <a href="#cardapio">Cardápio</a>
-      <a href="#promo">Promoções</a>
+      <a href="#historia">Nossa história</a>
       <a href="#info">Horários</a>
       <a href="#info">Endereço</a>
     </nav>
+    <div class="right">
+      <span class={`badge ${openNow ? 'open' : 'closed'}`} data-openbadge>
+        <span class="dot"></span>{openNow ? 'Aberto agora' : 'Fechado agora'}
+      </span>
+    </div>
   </div>
 </header>

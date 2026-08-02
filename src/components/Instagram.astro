@@ -1,0 +1,25 @@
+---
+interface Props { handle: string; url: string; embed: string; }
+const { handle, url, embed } = Astro.props;
+const perfil = url || (handle ? `https://www.instagram.com/${handle.replace('@', '')}` : '#');
+---
+<section class="section">
+  <div class="container">
+    <div class="ig-head">
+      <div class="sec-head" style="margin:0">
+        <div class="kicker">Instagram</div>
+        <h2>{handle || '@frangodafamilia'}</h2>
+      </div>
+      <a class="btn btn-gold" href={perfil} target="_blank" rel="noopener">Seguir no Instagram</a>
+    </div>
+    {embed ? (
+      <div set:html={embed} />
+    ) : (
+      <div class="ig-grid">
+        {Array.from({ length: 6 }).map(() => (
+          <a href={perfil} target="_blank" rel="noopener"><div class="ig-ph">post</div></a>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

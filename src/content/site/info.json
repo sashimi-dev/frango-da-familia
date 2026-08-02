@@ -1,17 +1,21 @@
 {
-  "tagline": "Frango assado na brasa, tempero de família. É só chamar no WhatsApp!",
-  "whatsapp": "5563999999999",
+  "tagline": "Frango assado na brasa, com tempero de família. Reserve seu almoço no Zap!",
+  "whatsapp": "5563992553014",
+  "whatsapp2": "5563992237525",
   "mensagem_whatsapp": "Olá, Frango da Família! Gostaria de fazer um pedido:",
-  "telefone": "(63) 99999-9999",
-  "endereco": "Quadra 104 Sul, Rua SO-11, nº 00 — Plano Diretor Sul, Palmas - TO",
-  "mapa_url": "https://www.google.com/maps/search/?api=1&query=Frango+da+Familia+Palmas+TO",
+  "telefone": "(63) 99255-3014",
+  "endereco": "Avenida A, Quadra 37, Lote 66 (Avenida do Posto Norte Sul) — Setor Jardim do Porto, Palmas - TO",
+  "mapa_url": "https://www.google.com/maps/search/?api=1&query=Avenida+A+Quadra+37+Lote+66+Setor+Jardim+do+Porto+Palmas+TO",
   "horarios": [
-    { "dias": "Terça a Sexta", "horario": "11h às 22h" },
-    { "dias": "Sábado e Domingo", "horario": "11h às 23h" },
+    { "dias": "Terça a Domingo", "horario": "11h às 15h" },
     { "dias": "Segunda-feira", "horario": "Fechado" }
   ],
   "hero_imagem": "/images/hero.svg",
-  "promo_titulo": "Combo Família",
-  "promo_texto": "Frango inteiro assado + 2 acompanhamentos grandes + refrigerante 2L. Peça pelo WhatsApp e retire quentinho!",
-  "promo_imagem": "/images/promo.svg"
+  "logo": "/images/logo.svg",
+  "promo_titulo": "Reserve seu almoço no Zap!",
+  "promo_texto": "Frango assado na brasa, costela e as porções da casa. Peça pelo WhatsApp e retire quentinho no Setor Jardim do Porto.",
+  "promo_imagem": "/images/promo.svg",
+  "instagram_handle": "@frangodafamilia",
+  "instagram_url": "https://www.instagram.com/frangodafamilia",
+  "instagram_embed": ""
 }

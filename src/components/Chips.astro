@@ -1,0 +1,10 @@
+---
+interface Props { categorias: string[]; }
+const { categorias } = Astro.props;
+const slug = (s: string) => 'cat-' + s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+<div class="chips">
+  <div class="container">
+    {categorias.map((c) => <a class="chip" href={`#${slug(c)}`}>{c}</a>)}
+  </div>
+</div>

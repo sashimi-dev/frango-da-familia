@@ -1,13 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Frango assado na brasa">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#7a1f10"/>
-      <stop offset="1" stop-color="#c0392b"/>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d1a10"/>
+      <stop offset="0.55" stop-color="#4d2f1b"/>
+      <stop offset="1" stop-color="#2d1a10"/>
     </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="22%" r="55%">
+      <stop offset="0" stop-color="#e8a33d" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#e8a33d" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   <rect width="1200" height="800" fill="url(#g)"/>
-  <circle cx="600" cy="360" r="230" fill="#ffffff" opacity="0.10"/>
-  <circle cx="600" cy="360" r="160" fill="#ffcc80" opacity="0.35"/>
-  <text x="600" y="375" font-family="Georgia, serif" font-size="72" fill="#fff" text-anchor="middle" font-weight="700">🍗</text>
-  <text x="600" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#fff" opacity="0.9" text-anchor="middle">Substitua por uma foto do seu frango assado</text>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <text x="600" y="410" font-family="Georgia, serif" font-size="120" fill="#f2d79a" text-anchor="middle">🍗</text>
+  <text x="600" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#f2d79a" opacity="0.65" text-anchor="middle">substitua pela foto do frango na brasa</text>
 </svg>
