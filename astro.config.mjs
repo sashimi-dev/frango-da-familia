@@ -12,8 +12,6 @@ export default defineConfig({
   site: 'https://frango-da-familia.pages.dev',
 
   integrations: [sitemap()],
-  cacheDir: '/tmp/frango-astro',
-  vite: { cacheDir: '/tmp/frango-vite' },
 
   build: {
     format: 'directory',
