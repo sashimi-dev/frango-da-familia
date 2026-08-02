@@ -136,6 +136,8 @@ section[id],.cat[id]{scroll-margin-top:130px}
 .ig-grid a{display:block}
 .ig-grid img,.ig-ph{aspect-ratio:1;width:100%;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 .ig-ph{display:flex;align-items:center;justify-content:center;color:#b9a892;background:repeating-linear-gradient(45deg,#f4ead9,#f4ead9 12px,#efe1cd 12px,#efe1cd 24px);font-size:.8rem;font-weight:600}
+.ig-embed{width:100%}
+.ig-embed iframe{width:100%;min-height:450px;border:0;border-radius:12px}
 
 /* Info */
 .info{background:var(--wood);color:#f3e3cb}

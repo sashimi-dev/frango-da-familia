@@ -25,7 +25,10 @@ const temPosts = posts && posts.length > 0;
         ))}
       </div>
     ) : embed ? (
-      <div set:html={embed} />
+      <Fragment>
+        <div class="ig-embed" set:html={embed} />
+        <script is:inline src="https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js"></script>
+      </Fragment>
     ) : (
       <div class="ig-grid">
         {Array.from({ length: 6 }).map(() => (
