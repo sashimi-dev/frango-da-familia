@@ -71,6 +71,19 @@ export function todayHorario(horarios: { dias: string; horario: string }[], now 
   return 'Fechado';
 }
 
+// Gera openingHoursSpecification (schema.org) a partir da agenda.
+export function openingHoursSpec(sched: Schedule) {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const hhmm = (mins: number) => `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+  const specs: { '@type': string; dayOfWeek: string; opens: string; closes: string }[] = [];
+  for (let wd = 0; wd < 7; wd++) {
+    for (const i of sched[wd] || []) {
+      specs.push({ '@type': 'OpeningHoursSpecification', dayOfWeek: days[wd], opens: hhmm(i.start), closes: hhmm(i.end) });
+    }
+  }
+  return specs;
+}
+
 // Estado calculado no build (fallback). O cliente recalcula no navegador.
 export function isOpenNow(sched: Schedule, now = new Date()): boolean {
   const parts = new Intl.DateTimeFormat('en-US', {

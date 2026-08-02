@@ -12,7 +12,7 @@ import Instagram from '../components/Instagram.astro';
 import Info from '../components/Info.astro';
 import { whatsappLink } from '../lib/whatsapp';
 import WaIcon from '../components/WaIcon.astro';
-import { buildSchedule, isOpenNow, todayHorario } from '../lib/hours';
+import { buildSchedule, isOpenNow, todayHorario, openingHoursSpec } from '../lib/hours';
 
 const info = (await getEntry('site', 'info')).data;
 const menuEntries = await getCollection('menu', ({ data }) => data.disponivel !== false);
@@ -34,8 +34,48 @@ const dayText = Array.from({ length: 7 }, (_, wd) => {
 });
 
 const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
+
+// ---- SEO ----
+const siteUrl = (Astro.site ?? new URL('https://frango-da-familia.pages.dev')).href.replace(/\/$/, '');
+const description = 'Frango da Família — frango assado na brasa em Palmas - TO. Frango inteiro, meio frango, costela assada e porções. Peça pelo WhatsApp e retire quentinho no Setor Jardim do Porto.';
+const priceToNumber = (p: string) => (p || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
+
+const hasMenuSection = categoriasPresentes.map((cat) => ({
+  '@type': 'MenuSection',
+  name: cat,
+  hasMenuItem: itens.filter((i) => i.categoria === cat).map((i) => ({
+    '@type': 'MenuItem',
+    name: i.nome,
+    description: i.descricao,
+    offers: { '@type': 'Offer', price: priceToNumber(i.preco), priceCurrency: 'BRL' },
+  })),
+}));
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: 'Frango da Família',
+  description,
+  image: `${siteUrl}/images/og-image.png`,
+  url: siteUrl,
+  telephone: `+${info.whatsapp}`,
+  servesCuisine: ['Frango assado', 'Comida brasileira'],
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Avenida A, Quadra 37, Lote 66 (Avenida do Posto Norte Sul)',
+    addressLocality: 'Palmas',
+    addressRegion: 'TO',
+    addressCountry: 'BR',
+  },
+  areaServed: 'Palmas - TO',
+  sameAs: [info.instagram_url].filter(Boolean),
+  openingHoursSpecification: openingHoursSpec(schedule),
+  hasMenu: { '@type': 'Menu', hasMenuSection },
+  acceptsReservations: 'True',
+};
 ---
-<Base title="Frango da Família — Frango assado na brasa em Palmas - TO">
+<Base title="Frango da Família — Frango assado na brasa em Palmas - TO" description={description} jsonld={jsonld}>
   <TopBar logo={info.logo} openNow={openNow} />
   <Hero
     tagline={info.tagline}

@@ -1,16 +1,21 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Produz saída 100% estática (sem runtime de servidor) — ideal para Cloudflare Pages.
+  // Saída 100% estática (sem runtime de servidor) — ideal para Cloudflare Pages.
   output: 'static',
 
-  // Troque pelo domínio final quando tiver um (usado para sitemap/URLs absolutas).
+  // IMPORTANTE p/ SEO: troque pelo domínio final quando tiver um.
+  // Usado para gerar URLs absolutas no sitemap, canonical e Open Graph.
   site: 'https://frango-da-familia.pages.dev',
 
+  integrations: [sitemap()],
+  cacheDir: '/tmp/frango-astro',
+  vite: { cacheDir: '/tmp/frango-vite' },
+
   build: {
-    // Gera /sobre/index.html em vez de /sobre.html — URLs mais limpas.
     format: 'directory',
   },
 });

@@ -4,8 +4,19 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  jsonld?: unknown;
 }
-const { title, description = 'Frango assado na brasa em Palmas - TO. Peça pelo WhatsApp.' } = Astro.props;
+const {
+  title,
+  description = 'Frango assado na brasa em Palmas - TO. Frango inteiro, meio frango, costela e porções. Peça pelo WhatsApp e retire quentinho.',
+  image = '/images/og-image.png',
+  jsonld,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://frango-da-familia.pages.dev');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image, site).href;
 ---
 
 <!doctype html>
@@ -15,14 +26,37 @@ const { title, description = 'Frango assado na brasa em Palmas - TO. Peça pelo 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#c0392b" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <!-- Palavras-chave / local -->
+    <meta name="keywords" content="frango assado, frango na brasa, delivery frango Palmas, comida Palmas TO, costela assada, marmita Palmas, Frango da Família, Setor Jardim do Porto" />
+    <meta name="author" content="Frango da Família" />
+    <meta name="geo.region" content="BR-TO" />
+    <meta name="geo.placename" content="Palmas, Tocantins" />
+
+    <!-- Open Graph (WhatsApp, Facebook, Instagram) -->
+    <meta property="og:type" content="restaurant.restaurant" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Frango da Família" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/hero.svg" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {jsonld && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+    )}
   </head>
   <body>
     <slot />

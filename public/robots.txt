@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://frango-da-familia.pages.dev/sitemap-index.xml
