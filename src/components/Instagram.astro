@@ -1,24 +1,35 @@
 ---
 import Icon from './Icon.astro';
-interface Props { handle: string; url: string; embed: string; }
-const { handle, url, embed } = Astro.props;
+interface Post { imagem: string; link?: string }
+interface Props { handle: string; url: string; embed: string; posts?: Post[] }
+const { handle, url, embed, posts = [] } = Astro.props;
 const perfil = url || (handle ? `https://www.instagram.com/${handle.replace('@', '')}` : '#');
+const temPosts = posts && posts.length > 0;
 ---
 <section class="section">
   <div class="container">
     <div class="ig-head">
       <div class="sec-head" style="margin:0">
         <div class="kicker">Instagram</div>
-        <h2>{handle || '@frangodafamilia'}</h2>
+        <h2>{handle || '@fran_godafamilia'}</h2>
       </div>
       <a class="btn btn-gold" href={perfil} target="_blank" rel="noopener"><Icon name="instagram" size={18} /> Seguir no Instagram</a>
     </div>
-    {embed ? (
+
+    {temPosts ? (
+      <div class="ig-grid">
+        {posts.map((p) => (
+          <a href={p.link || perfil} target="_blank" rel="noopener" aria-label="Ver no Instagram">
+            <img src={p.imagem} alt="Publicação do Instagram" loading="lazy" />
+          </a>
+        ))}
+      </div>
+    ) : embed ? (
       <div set:html={embed} />
     ) : (
       <div class="ig-grid">
         {Array.from({ length: 6 }).map(() => (
-          <a href={perfil} target="_blank" rel="noopener"><div class="ig-ph">post</div></a>
+          <a href={perfil} target="_blank" rel="noopener"><div class="ig-ph">foto</div></a>
         ))}
       </div>
     )}

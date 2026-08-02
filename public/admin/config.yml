@@ -74,4 +74,14 @@ collections:
           - { name: promo_imagem, label: "Destaque — imagem", widget: image, required: false }
           - { name: instagram_handle, label: "Instagram (@usuário)", widget: string, required: false }
           - { name: instagram_url, label: "Instagram (link do perfil)", widget: string, required: false }
-          - { name: instagram_embed, label: "Instagram — código do widget (SnapWidget/Behold)", widget: text, required: false, hint: "Cole aqui o código de incorporação. Deixe vazio para mostrar a grade padrão." }
+          - { name: instagram_embed, label: "Instagram — código do widget (opcional)", widget: text, required: false, hint: "Só se um dia quiser usar um widget externo. Deixe vazio para usar as fotos em destaque abaixo." }
+          - name: instagram_posts
+            label: "Instagram — fotos em destaque"
+            widget: list
+            required: false
+            label_singular: "Foto"
+            summary: "{{fields.link}}"
+            hint: "Suas próprias fotos. Cada uma pode linkar para o post no Instagram."
+            fields:
+              - { name: imagem, label: "Foto", widget: image }
+              - { name: link, label: "Link do post no Instagram (opcional)", widget: string, required: false }

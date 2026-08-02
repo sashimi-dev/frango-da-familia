@@ -40,6 +40,15 @@ const site = defineCollection({
     instagram_url: z.string().default(''),
     // Cole aqui o código de incorporação do Behold/SnapWidget (opcional).
     instagram_embed: z.string().default(''),
+    // Grade própria de fotos em destaque (sem depender de terceiros).
+    instagram_posts: z
+      .array(
+        z.object({
+          imagem: z.string(),
+          link: z.string().default(''),
+        })
+      )
+      .default([]),
   }),
 });
 
