@@ -8,7 +8,7 @@ export default defineConfig({
 
   // IMPORTANTE p/ SEO: troque pelo domínio final quando tiver um.
   // Usado para gerar URLs absolutas no canonical e Open Graph.
-  site: 'https://frango-da-familia.pages.dev',
+  site: 'https://frangodafamilia.com.br',
 
   build: {
     format: 'directory',
