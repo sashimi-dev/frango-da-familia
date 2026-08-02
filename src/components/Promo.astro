@@ -1,0 +1,30 @@
+---
+import { whatsappLink } from '../lib/whatsapp';
+
+interface Props {
+  titulo: string;
+  texto: string;
+  imagem: string;
+  whatsapp: string;
+  mensagem: string;
+}
+const { titulo, texto, imagem, whatsapp, mensagem } = Astro.props;
+const waHref = whatsappLink(whatsapp, mensagem);
+const mostrar = Boolean(titulo || texto);
+---
+{mostrar && (
+  <section class="section" id="promo">
+    <div class="container">
+      <h2>Promoções</h2>
+      <p class="sub">Ofertas atualizadas pelo dono. Aproveite!</p>
+      <div class="promo">
+        <img class="promo-img" src={imagem} alt={titulo} loading="lazy" />
+        <div class="promo-text">
+          <h3>{titulo}</h3>
+          <p>{texto}</p>
+          <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">💬 Pedir promoção</a>
+        </div>
+      </div>
+    </div>
+  </section>
+)}

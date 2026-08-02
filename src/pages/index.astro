@@ -1,0 +1,62 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import TopBar from '../components/TopBar.astro';
+import Hero from '../components/Hero.astro';
+import MenuSection from '../components/MenuSection.astro';
+import Promo from '../components/Promo.astro';
+import Info from '../components/Info.astro';
+import { whatsappLink } from '../lib/whatsapp';
+
+// Informações do negócio (arquivo único editável pelo /admin).
+const infoEntry = await getEntry('site', 'info');
+const info = infoEntry.data;
+
+// Itens do cardápio — apenas os disponíveis.
+const menuEntries = await getCollection('menu', ({ data }) => data.disponivel !== false);
+const itens = menuEntries.map((e) => e.data);
+
+const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
+---
+<Base title="Frango da Família — Frango assado em Palmas - TO">
+  <TopBar />
+
+  <Hero
+    tagline={info.tagline}
+    imagem={info.hero_imagem}
+    whatsapp={info.whatsapp}
+    mensagem={info.mensagem_whatsapp}
+  />
+
+  <MenuSection
+    itens={itens}
+    whatsapp={info.whatsapp}
+    mensagemBase={info.mensagem_whatsapp}
+  />
+
+  <Promo
+    titulo={info.promo_titulo}
+    texto={info.promo_texto}
+    imagem={info.promo_imagem}
+    whatsapp={info.whatsapp}
+    mensagem={`${info.mensagem_whatsapp} ${info.promo_titulo}`}
+  />
+
+  <Info
+    horarios={info.horarios}
+    endereco={info.endereco}
+    mapaUrl={info.mapa_url}
+    telefone={info.telefone}
+  />
+
+  <footer class="site">
+    <div>🍗 <strong>Frango da Família</strong> — Palmas, Tocantins</div>
+    <div class="small">
+      {info.endereco}
+    </div>
+    <div class="small">Feito com carinho. Peça pelo WhatsApp!</div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a class="fab" href={waHeroHref} target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp">💬</a>
+</Base>

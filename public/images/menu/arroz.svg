@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" role="img" aria-label="Arroz">
+  <rect width="600" height="450" fill="#7a5b2e"/>
+  <circle cx="300" cy="205" r="120" fill="#ffffff" opacity="0.18"/>
+  <circle cx="300" cy="205" r="88" fill="#ffffff" opacity="0.28"/>
+  <text x="300" y="215" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#fff" text-anchor="middle" font-weight="700">Arroz</text>
+  <text x="300" y="410" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#fff" opacity="0.85" text-anchor="middle">Frango da Família · foto ilustrativa</text>
+</svg>

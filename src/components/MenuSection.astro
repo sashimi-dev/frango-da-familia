@@ -1,0 +1,56 @@
+---
+import MenuItem from './MenuItem.astro';
+
+interface Item {
+  nome: string;
+  descricao: string;
+  preco: string;
+  categoria: string;
+  foto: string;
+  ordem: number;
+}
+interface Props {
+  itens: Item[];
+  whatsapp: string;
+  mensagemBase: string;
+}
+const { itens, whatsapp, mensagemBase } = Astro.props;
+
+// Agrupa por categoria, preservando a ordem de aparição das categorias.
+const categorias: string[] = [];
+const porCategoria: Record<string, Item[]> = {};
+for (const item of itens) {
+  if (!porCategoria[item.categoria]) {
+    porCategoria[item.categoria] = [];
+    categorias.push(item.categoria);
+  }
+  porCategoria[item.categoria].push(item);
+}
+for (const cat of categorias) {
+  porCategoria[cat].sort((a, b) => a.ordem - b.ordem);
+}
+---
+<section class="section" id="cardapio">
+  <div class="container">
+    <h2>Cardápio</h2>
+    <p class="sub">Peça pelo WhatsApp e retire quentinho. Preços em reais (R$).</p>
+
+    {categorias.map((cat) => (
+      <div class="cat">
+        <h3>{cat}</h3>
+        <div class="grid">
+          {porCategoria[cat].map((item) => (
+            <MenuItem
+              nome={item.nome}
+              descricao={item.descricao}
+              preco={item.preco}
+              foto={item.foto}
+              whatsapp={whatsapp}
+              mensagemBase={mensagemBase}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

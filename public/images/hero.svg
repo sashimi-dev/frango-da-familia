@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Frango assado na brasa">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7a1f10"/>
+      <stop offset="1" stop-color="#c0392b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="600" cy="360" r="230" fill="#ffffff" opacity="0.10"/>
+  <circle cx="600" cy="360" r="160" fill="#ffcc80" opacity="0.35"/>
+  <text x="600" y="375" font-family="Georgia, serif" font-size="72" fill="#fff" text-anchor="middle" font-weight="700">🍗</text>
+  <text x="600" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#fff" opacity="0.9" text-anchor="middle">Substitua por uma foto do seu frango assado</text>
+</svg>

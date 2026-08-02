@@ -1,0 +1,25 @@
+---
+import { whatsappLink } from '../lib/whatsapp';
+
+interface Props {
+  nome: string;
+  descricao: string;
+  preco: string;
+  foto: string;
+  whatsapp: string;
+  mensagemBase: string;
+}
+const { nome, descricao, preco, foto, whatsapp, mensagemBase } = Astro.props;
+const waHref = whatsappLink(whatsapp, `${mensagemBase} ${nome}`);
+---
+<article class="item">
+  <img class="photo" src={foto} alt={nome} loading="lazy" width="600" height="450" />
+  <div class="body">
+    <h4 class="name">{nome}</h4>
+    <p class="desc">{descricao}</p>
+    <div class="row">
+      <span class="price"><small>R$</small> {preco}</span>
+      <a class="wa-mini" href={waHref} target="_blank" rel="noopener">💬 Pedir</a>
+    </div>
+  </div>
+</article>

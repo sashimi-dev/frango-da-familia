@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Frango assado na brasa em Palmas - TO. Peça pelo WhatsApp.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#c0392b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/hero.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Promoção Combo Família">
+  <defs>
+    <linearGradient id="p" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e67e22"/>
+      <stop offset="1" stop-color="#c0392b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#p)"/>
+  <text x="450" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="60" fill="#fff" text-anchor="middle" font-weight="800">COMBO FAMÍLIA</text>
+  <text x="450" y="340" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#fff" opacity="0.95" text-anchor="middle">Troque esta imagem pelo /admin</text>
+</svg>

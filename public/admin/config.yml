@@ -1,0 +1,74 @@
+# =====================================================================
+#  Configuração do Sveltia CMS  —  Frango da Família
+#  Painel em: https://SEU-SITE.pages.dev/admin/
+# =====================================================================
+
+backend:
+  name: github
+  # TROQUE por: usuario-ou-org/nome-do-repositorio
+  repo: SEU-USUARIO/frango-da-familia
+  branch: main
+  # URL do seu OAuth (Cloudflare Worker "sveltia-cms-auth").
+  # Veja o README, seção "Login do dono (/admin)". TROQUE o subdomínio.
+  base_url: https://sveltia-cms-auth.SEU-SUBDOMINIO.workers.dev
+
+# Onde as imagens enviadas pelo painel são salvas.
+media_folder: "public/images"      # caminho no repositório
+public_folder: "/images"           # caminho usado no site publicado
+
+# Idioma do painel
+locale: pt
+
+collections:
+  # -------------------------------------------------------------------
+  # CARDÁPIO — um arquivo por prato (src/content/menu/*.md)
+  # -------------------------------------------------------------------
+  - name: menu
+    label: "Cardápio"
+    label_singular: "Item do cardápio"
+    folder: "src/content/menu"
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    summary: "{{nome}} — R$ {{preco}} ({{categoria}})"
+    fields:
+      - { name: nome, label: "Nome do prato", widget: string }
+      - { name: descricao, label: "Descrição", widget: text, required: false }
+      - { name: preco, label: "Preço (R$)", widget: string, hint: "Somente o valor. Ex.: 39,90" }
+      - name: categoria
+        label: "Categoria"
+        widget: select
+        options: ["Frango", "Acompanhamentos", "Bebidas", "Sobremesas"]
+        default: "Frango"
+      - { name: foto, label: "Foto do prato", widget: image, required: false }
+      - { name: ordem, label: "Ordem de exibição", widget: number, default: 99, value_type: int, hint: "Menor aparece primeiro dentro da categoria." }
+      - { name: disponivel, label: "Disponível?", widget: boolean, default: true }
+
+  # -------------------------------------------------------------------
+  # INFORMAÇÕES DO NEGÓCIO — arquivo único (src/content/site/info.json)
+  # -------------------------------------------------------------------
+  - name: site
+    label: "Informações do negócio"
+    files:
+      - name: info
+        label: "Dados, horários e promoção"
+        file: "src/content/site/info.json"
+        fields:
+          - { name: tagline, label: "Frase de destaque (hero)", widget: string }
+          - { name: whatsapp, label: "WhatsApp (só números)", widget: string, hint: "Formato 55 + DDD + número. Ex.: 5563999999999" }
+          - { name: mensagem_whatsapp, label: "Mensagem inicial do WhatsApp", widget: string }
+          - { name: telefone, label: "Telefone (exibição)", widget: string, required: false }
+          - { name: endereco, label: "Endereço", widget: text }
+          - { name: mapa_url, label: "Link do mapa (Google Maps)", widget: string, required: false }
+          - name: horarios
+            label: "Horários de funcionamento"
+            widget: list
+            label_singular: "Horário"
+            fields:
+              - { name: dias, label: "Dias", widget: string, hint: "Ex.: Terça a Sexta" }
+              - { name: horario, label: "Horário", widget: string, hint: "Ex.: 11h às 22h" }
+          - { name: hero_imagem, label: "Imagem principal (hero)", widget: image, required: false }
+          - { name: promo_titulo, label: "Promoção — título", widget: string, required: false }
+          - { name: promo_texto, label: "Promoção — texto", widget: text, required: false }
+          - { name: promo_imagem, label: "Promoção — imagem", widget: image, required: false }

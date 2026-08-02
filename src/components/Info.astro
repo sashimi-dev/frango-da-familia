@@ -1,0 +1,34 @@
+---
+interface Horario { dias: string; horario: string; }
+interface Props {
+  horarios: Horario[];
+  endereco: string;
+  mapaUrl: string;
+  telefone: string;
+}
+const { horarios, endereco, mapaUrl, telefone } = Astro.props;
+---
+<section class="section" id="info">
+  <div class="container">
+    <h2>Horários e Endereço</h2>
+    <p class="sub">Estamos em Palmas - TO. Venha retirar ou peça pelo WhatsApp.</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🕒 Horário de funcionamento</h3>
+        <ul class="hours">
+          {horarios.map((h) => (
+            <li><span class="dias">{h.dias}</span><span class="horario">{h.horario}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>📍 Onde estamos</h3>
+        <p class="addr">{endereco}</p>
+        {mapaUrl && (
+          <a class="btn btn-wa" style="background:var(--brand)" href={mapaUrl} target="_blank" rel="noopener">Ver no mapa</a>
+        )}
+        {telefone && <p style="margin-top:1rem;color:var(--muted)">📞 {telefone}</p>}
+      </div>
+    </div>
+  </div>
+</section>
