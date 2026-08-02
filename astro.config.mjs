@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,10 +7,8 @@ export default defineConfig({
   output: 'static',
 
   // IMPORTANTE p/ SEO: troque pelo domínio final quando tiver um.
-  // Usado para gerar URLs absolutas no sitemap, canonical e Open Graph.
+  // Usado para gerar URLs absolutas no canonical e Open Graph.
   site: 'https://frango-da-familia.pages.dev',
-
-  integrations: [sitemap()],
 
   build: {
     format: 'directory',
