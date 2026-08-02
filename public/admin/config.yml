@@ -5,12 +5,10 @@
 
 backend:
   name: github
-  # TROQUE por: usuario-ou-org/nome-do-repositorio
-  repo: SEU-USUARIO/frango-da-familia
+  repo: sashimi-dev/frango-da-familia
   branch: main
-  # URL do seu OAuth (Cloudflare Worker "sveltia-cms-auth").
-  # Veja o README, seção "Login do dono (/admin)". TROQUE o subdomínio.
-  base_url: https://sveltia-cms-auth.SEU-SUBDOMINIO.workers.dev
+  # URL do OAuth (Cloudflare Worker "sveltia-cms-auth").
+  base_url: https://sveltia-cms-auth.green-night-a349.workers.dev
 
 # Onde as imagens enviadas pelo painel são salvas.
 media_folder: "public/images"      # caminho no repositório
