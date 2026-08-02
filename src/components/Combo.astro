@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
+import WaIcon from './WaIcon.astro';
 interface Props { titulo: string; texto: string; imagem: string; whatsapp: string; mensagem: string; }
 const { titulo, texto, imagem, whatsapp, mensagem } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
@@ -12,7 +13,7 @@ const mostrar = Boolean(titulo || texto);
       <div>
         <h2>{titulo}</h2>
         <p>{texto}</p>
-        <a class="btn btn-gold" href={waHref} target="_blank" rel="noopener">💬 Reservar no Zap</a>
+        <a class="btn btn-gold" href={waHref} target="_blank" rel="noopener"><WaIcon /> Reservar no Zap</a>
       </div>
     </div>
   </section>

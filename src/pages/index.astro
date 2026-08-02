@@ -11,6 +11,7 @@ import Reviews from '../components/Reviews.astro';
 import Instagram from '../components/Instagram.astro';
 import Info from '../components/Info.astro';
 import { whatsappLink } from '../lib/whatsapp';
+import WaIcon from '../components/WaIcon.astro';
 import { buildSchedule, isOpenNow, todayHorario } from '../lib/hours';
 
 const info = (await getEntry('site', 'info')).data;
@@ -60,7 +61,7 @@ const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
     <div class="cnpj">Feito com carinho. Peça pelo WhatsApp!</div>
   </footer>
 
-  <a class="fab" href={waHeroHref} target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp">💬</a>
+  <a class="fab" href={waHeroHref} target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp"><WaIcon size={30} /></a>
 
   <script define:vars={{ schedule, dayText }}>
     (function () {

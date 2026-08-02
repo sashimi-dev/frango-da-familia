@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
+import WaIcon from './WaIcon.astro';
 interface Props {
   tagline: string; imagem: string; whatsapp: string; mensagem: string;
   todayHoras: string; endereco: string; telefone: string;
@@ -17,7 +18,7 @@ const bairro = endereco.split('—').pop()?.trim() || endereco;
       <h1>O frango assado que sua família vai amar</h1>
       <p class="tag">{tagline}</p>
       <div class="cta">
-        <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">💬 Pedir pelo WhatsApp</a>
+        <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener"><WaIcon /> Pedir pelo WhatsApp</a>
         <a class="btn btn-ghost" href="#cardapio">Ver cardápio</a>
       </div>
       <div class="meta">

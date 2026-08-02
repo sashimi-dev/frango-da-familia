@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
+import WaIcon from './WaIcon.astro';
 
 interface Props {
   nome: string;
@@ -19,7 +20,7 @@ const waHref = whatsappLink(whatsapp, `${mensagemBase} ${nome}`);
     <p class="desc">{descricao}</p>
     <div class="row">
       <span class="price"><small>R$</small> {preco}</span>
-      <a class="wa-mini" href={waHref} target="_blank" rel="noopener">💬 Pedir</a>
+      <a class="mini" href={waHref} target="_blank" rel="noopener"><WaIcon size={15} /> Pedir</a>
     </div>
   </div>
 </article>
