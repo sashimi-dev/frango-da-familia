@@ -7,12 +7,12 @@
   "mapa_url": "https://www.google.com/maps/search/?api=1&query=Frango+da+Familia+Palmas+TO",
   "horarios": [
     {
-      "dias": "Terça a Sexta",
-      "horario": "11h às 10h"
+      "dias": "Segunda a Sexta",
+      "horario": "14h às 17h"
     },
     {
       "dias": "Sábado e Domingo",
-      "horario": "11h às 23h"
+      "horario": "10h às 14h"
     },
     {
       "dias": "Segunda-feira",
