@@ -1,6 +1,7 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
 import WaIcon from './WaIcon.astro';
+import Icon from './Icon.astro';
 interface Props {
   tagline: string; imagem: string; whatsapp: string; mensagem: string;
   todayHoras: string; endereco: string; telefone: string;
@@ -14,7 +15,7 @@ const bairro = endereco.split('—').pop()?.trim() || endereco;
   <div class="scrim"></div>
   <div class="container">
     <div class="inner">
-      <span class="eyebrow">🔥 Assado na brasa • Palmas - TO</span>
+      <span class="eyebrow"><Icon name="flame" size={16} /> Assado na brasa • Palmas - TO</span>
       <h1>O frango assado que sua família vai amar</h1>
       <p class="tag">{tagline}</p>
       <div class="cta">

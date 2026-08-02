@@ -1,6 +1,7 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
 import WaIcon from './WaIcon.astro';
+import Icon from './Icon.astro';
 interface Horario { dias: string; horario: string; }
 interface Props {
   horarios: Horario[]; endereco: string; mapaUrl: string;
@@ -20,7 +21,7 @@ const wa2 = whatsapp2 ? whatsappLink(whatsapp2, mensagem) : '';
     </div>
     <div class="container-grid">
       <div class="info-card">
-        <h3>🕒 Horários</h3>
+        <h3><Icon name="clock" size={20} /> Horários</h3>
         <ul class="hours">
           {horarios.map((h) => (
             <li><span>{h.dias}</span><span class="h">{h.horario}</span></li>
@@ -28,7 +29,7 @@ const wa2 = whatsapp2 ? whatsappLink(whatsapp2, mensagem) : '';
         </ul>
       </div>
       <div class="info-card">
-        <h3>📍 Contato e retirada</h3>
+        <h3><Icon name="pin" size={20} /> Contato e retirada</h3>
         <p class="addr">{endereco}</p>
         <div style="display:flex;flex-direction:column;gap:10px">
           <a class="btn btn-wa" href={wa1} target="_blank" rel="noopener"><WaIcon /> {telefone || 'WhatsApp 1'}</a>

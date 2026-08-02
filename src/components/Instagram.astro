@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 interface Props { handle: string; url: string; embed: string; }
 const { handle, url, embed } = Astro.props;
 const perfil = url || (handle ? `https://www.instagram.com/${handle.replace('@', '')}` : '#');
@@ -10,7 +11,7 @@ const perfil = url || (handle ? `https://www.instagram.com/${handle.replace('@',
         <div class="kicker">Instagram</div>
         <h2>{handle || '@frangodafamilia'}</h2>
       </div>
-      <a class="btn btn-gold" href={perfil} target="_blank" rel="noopener">Seguir no Instagram</a>
+      <a class="btn btn-gold" href={perfil} target="_blank" rel="noopener"><Icon name="instagram" size={18} /> Seguir no Instagram</a>
     </div>
     {embed ? (
       <div set:html={embed} />
