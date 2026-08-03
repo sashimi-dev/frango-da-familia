@@ -1,12 +1,11 @@
 ---
 interface Props { logo: string; openNow: boolean; }
-const { logo, openNow } = Astro.props;
+const { openNow } = Astro.props;
 ---
 <header class="topbar">
   <div class="container">
-    <a class="brandmark" href="#topo">
-      <img src={logo} alt="Frango da Família" width="42" height="42" />
-      Frango da Família
+    <a class="brandmark" href="#topo" aria-label="Frango da Família — início">
+      <img src="/images/logotipo.png" alt="Frango da Família" height="44" />
     </a>
     <nav class="navlinks">
       <a href="#cardapio">Cardápio</a>

@@ -51,8 +51,9 @@ section[id],.cat[id]{scroll-margin-top:130px}
 /* Top bar */
 .topbar{position:sticky;top:0;z-index:30;background:rgba(42,24,16,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--gold-deep)}
 .topbar .container{display:flex;align-items:center;gap:16px;height:68px}
-.brandmark{display:flex;align-items:center;gap:10px;color:var(--gold-soft);font-weight:800;font-size:1.15rem;text-decoration:none;font-family:var(--display)}
-.brandmark img{width:42px;height:42px;border-radius:10px;object-fit:cover}
+.brandmark{display:flex;align-items:center;text-decoration:none}
+.brandmark img{height:44px;width:auto;display:block}
+@media(max-width:520px){.brandmark img{height:36px}}
 .navlinks{display:none;gap:22px;margin-left:6px}
 .navlinks a{color:#f3e3cb;text-decoration:none;font-weight:600;font-size:.95rem;font-family:var(--font)}
 .navlinks a:hover{color:var(--gold)}
