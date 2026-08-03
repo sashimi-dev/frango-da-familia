@@ -51,9 +51,13 @@ section[id],.cat[id]{scroll-margin-top:130px}
 /* Top bar */
 .topbar{position:sticky;top:0;z-index:30;background:rgba(42,24,16,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--gold-deep)}
 .topbar .container{display:flex;align-items:center;gap:16px;height:68px}
-.brandmark{display:flex;align-items:center;text-decoration:none}
-.brandmark img{height:44px;width:auto;display:block}
-@media(max-width:520px){.brandmark img{height:36px}}
+.brandmark{display:flex;align-items:center;text-decoration:none;flex:none}
+.brandmark img{height:50px;width:auto;display:block}
+@media(max-width:600px){
+  .brandmark img{height:44px}
+  .topbar .container{gap:8px}
+  .badge{font-size:.72rem;padding:.32rem .55rem}
+}
 .navlinks{display:none;gap:22px;margin-left:6px}
 .navlinks a{color:#f3e3cb;text-decoration:none;font-weight:600;font-size:.95rem;font-family:var(--font)}
 .navlinks a:hover{color:var(--gold)}
