@@ -18,7 +18,7 @@ const info = (await getEntry('site', 'info')).data;
 const menuEntries = await getCollection('menu', ({ data }) => data.disponivel !== false);
 const itens = menuEntries.map((e) => e.data);
 
-const ordemCategorias = ['Frangos e Carnes', 'Porções'];
+const ordemCategorias = ['Frangos e Carnes', 'Porções', 'Pastéis', 'Pizza', 'Lasanhas', 'Bebidas', 'Sobremesas'];
 const categoriasPresentes = [...new Set(itens.map((i) => i.categoria))]
   .sort((a, b) => {
     const ia = ordemCategorias.indexOf(a), ib = ordemCategorias.indexOf(b);

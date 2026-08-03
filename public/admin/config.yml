@@ -37,7 +37,7 @@ collections:
       - name: categoria
         label: "Categoria"
         widget: select
-        options: ["Frangos e Carnes", "Porções", "Bebidas", "Sobremesas"]
+        options: ["Frangos e Carnes", "Porções", "Pastéis", "Pizza", "Lasanhas", "Bebidas", "Sobremesas"]
         default: "Frangos e Carnes"
       - { name: foto, label: "Foto do prato", widget: image, required: false }
       - { name: ordem, label: "Ordem de exibição", widget: number, default: 99, value_type: int, hint: "Menor aparece primeiro dentro da categoria." }
