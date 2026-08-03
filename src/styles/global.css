@@ -61,11 +61,16 @@ section[id],.cat[id]{scroll-margin-top:150px}
   .topbar .container{gap:8px}
   .badge{font-size:.76rem}
 }
-@media(max-width:400px){ .topbar .right{display:none} }
-.navlinks{display:none;gap:22px;margin-left:6px}
-.navlinks a{color:#f3e3cb;text-decoration:none;font-weight:600;font-size:.95rem;font-family:var(--font)}
-.navlinks a:hover{color:var(--gold)}
 .topbar .right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.menu-toggle{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;color:var(--gold-soft);cursor:pointer;padding:6px;border-radius:8px}
+.menu-toggle:hover{color:var(--gold)}
+.deskstatus{display:none}
+.navlinks{display:none;position:absolute;left:0;right:0;top:80px;flex-direction:column;align-items:stretch;gap:0;background:var(--wood-2);border-top:1px solid rgba(255,255,255,.08);border-bottom:3px solid var(--gold-deep);padding:6px 20px 14px;box-shadow:0 16px 30px rgba(0,0,0,.35)}
+.topbar.nav-open .navlinks{display:flex}
+.navlinks a{color:#f3e3cb;text-decoration:none;font-weight:700;font-size:1.05rem;font-family:var(--font);padding:14px 2px;border-bottom:1px solid rgba(255,255,255,.08)}
+.navlinks a:last-child{border-bottom:none}
+.navlinks a:hover{color:var(--gold)}
+.navstatus{padding:12px 2px;border-bottom:1px solid rgba(255,255,255,.12)}
 
 /* Open badge */
 .badge{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:700;white-space:nowrap}
@@ -173,8 +178,14 @@ footer.site a{color:var(--gold-soft)}
 .fab{position:fixed;right:18px;bottom:18px;z-index:50;background:var(--wa);color:#fff;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;text-decoration:none;box-shadow:0 8px 20px rgba(40,25,12,.28)}
 .fab:hover{background:var(--wa-dark)}
 
+@media(min-width:760px){
+  .menu-toggle{display:none}
+  .navstatus{display:none}
+  .deskstatus{display:inline-flex}
+  .navlinks{display:flex;position:static;flex-direction:row;align-items:center;gap:22px;margin-left:6px;background:none;border:none;padding:0;box-shadow:none}
+  .navlinks a{border:none;padding:0;font-size:.95rem;font-weight:600}
+}
 @media(min-width:700px){
-  .navlinks{display:flex}
   .grid{grid-template-columns:repeat(2,1fr)}
   .rev-grid{grid-template-columns:repeat(3,1fr)}
   .combo .container,.story .container{grid-template-columns:1fr 1fr}
