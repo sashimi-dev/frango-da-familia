@@ -23,10 +23,10 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.chip:focus-visible,.min
   outline-offset:2px;
   border-radius:6px;
 }
-:target{scroll-margin-top:130px}
+:target{scroll-margin-top:150px}
 .container{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
 .section{padding:72px 0}
-section[id],.cat[id]{scroll-margin-top:130px}
+section[id],.cat[id]{scroll-margin-top:150px}
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important;scroll-behavior:auto !important}
   .item:hover{transform:none}.item:hover .photo{transform:none}.btn:hover{transform:none}
@@ -50,14 +50,18 @@ section[id],.cat[id]{scroll-margin-top:130px}
 
 /* Top bar */
 .topbar{position:sticky;top:0;z-index:30;background:rgba(42,24,16,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--gold-deep)}
-.topbar .container{display:flex;align-items:center;gap:16px;height:68px}
-.brandmark{display:flex;align-items:center;text-decoration:none;flex:none}
-.brandmark img{height:50px;width:auto;display:block}
+.topbar .container{display:flex;align-items:center;gap:16px;height:80px}
+.brandmark{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.brandmark .mark{height:66px;width:auto;display:block}
+.brandmark .word{height:28px;width:auto;display:block}
 @media(max-width:600px){
-  .brandmark img{height:44px}
+  .brandmark{gap:9px}
+  .brandmark .mark{height:56px}
+  .brandmark .word{height:23px}
   .topbar .container{gap:8px}
   .badge{font-size:.72rem;padding:.32rem .55rem}
 }
+@media(max-width:400px){ .topbar .right{display:none} }
 .navlinks{display:none;gap:22px;margin-left:6px}
 .navlinks a{color:#f3e3cb;text-decoration:none;font-weight:600;font-size:.95rem;font-family:var(--font)}
 .navlinks a:hover{color:var(--gold)}
@@ -86,7 +90,7 @@ section[id],.cat[id]{scroll-margin-top:130px}
 .hero .meta b{font-size:1.02rem;color:#fff}
 
 /* Category chips */
-.chips{position:sticky;top:68px;z-index:20;background:var(--cream);border-bottom:1px solid var(--line)}
+.chips{position:sticky;top:80px;z-index:20;background:var(--cream);border-bottom:1px solid var(--line)}
 .chips .container{display:flex;gap:10px;overflow:auto;padding:13px 20px}
 .chip{white-space:nowrap;font-weight:700;font-size:.9rem;color:var(--brand-dark);background:#fff;border:1px solid var(--line);padding:.5rem 1rem;border-radius:999px;text-decoration:none}
 .chip:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
