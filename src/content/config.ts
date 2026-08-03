@@ -39,6 +39,7 @@ const site = defineCollection({
     historia_titulo: z.string().default('Tempero de família em cada frango'),
     historia_texto: z.string().default(''),
     historia_imagem: z.string().default('/images/familia.svg'),
+    historia_assinatura: z.string().default('Elvis & Arquênia'),
     instagram_handle: z.string().default(''),
     instagram_url: z.string().default(''),
     // Cole aqui o código de incorporação do Behold/SnapWidget (opcional).

@@ -75,6 +75,7 @@ collections:
           - { name: historia_titulo, label: "Nossa história — título", widget: string, required: false }
           - { name: historia_texto, label: "Nossa história — texto", widget: text, required: false, hint: "Deixe uma linha em branco para separar parágrafos." }
           - { name: historia_imagem, label: "Nossa história — foto (dono/família)", widget: image, required: false }
+          - { name: historia_assinatura, label: "Nossa história — assinatura (nomes dos donos)", widget: string, required: false }
           - { name: instagram_handle, label: "Instagram (@usuário)", widget: string, required: false }
           - { name: instagram_url, label: "Instagram (link do perfil)", widget: string, required: false }
           - { name: instagram_embed, label: "Instagram — código do widget (opcional)", widget: text, required: false, hint: "Só se um dia quiser usar um widget externo. Deixe vazio para usar as fotos em destaque abaixo." }

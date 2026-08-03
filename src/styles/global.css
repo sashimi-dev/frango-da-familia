@@ -139,6 +139,9 @@ section[id],.cat[id]{scroll-margin-top:150px}
 .story .container{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
 .story-photo{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);align-self:start}
 .story-text{white-space:pre-line}
+.story-signature{display:flex;flex-direction:column;margin:6px 0 22px}
+.story-signature .label{color:var(--muted);font-size:.9rem}
+.story-signature .assinatura{font-family:'Dancing Script','Segoe Script',cursive;font-weight:700;font-size:2.2rem;line-height:1.1;color:var(--brand-dark)}
 .story h2{font-size:2rem;color:var(--wood);margin:.4rem 0 14px}
 .story p{color:#5c4a3a;margin:0 0 14px}
 

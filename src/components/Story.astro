@@ -3,18 +3,24 @@ import { whatsappLink } from '../lib/whatsapp';
 import WaIcon from './WaIcon.astro';
 interface Props {
   whatsapp: string; mensagem: string;
-  titulo: string; texto: string; imagem: string;
+  titulo: string; texto: string; imagem: string; assinatura?: string;
 }
-const { whatsapp, mensagem, titulo, texto, imagem } = Astro.props;
+const { whatsapp, mensagem, titulo, texto, imagem, assinatura } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
 ---
 <section class="story section" id="historia">
   <div class="container">
-    <img class="story-photo" src={imagem} alt="Frango da Família" loading="lazy" width="800" height="600" decoding="async" />
+    <img class="story-photo" src={imagem} alt="Frango da Família" loading="lazy" width="800" height="450" decoding="async" />
     <div>
       <div class="kicker">Nossa história</div>
       <h2>{titulo}</h2>
       <p class="story-text">{texto}</p>
+      {assinatura && (
+        <div class="story-signature">
+          <span class="label">Com carinho,</span>
+          <span class="assinatura">{assinatura}</span>
+        </div>
+      )}
       <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener"><WaIcon /> Fazer meu pedido</a>
     </div>
   </div>
