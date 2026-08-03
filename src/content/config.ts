@@ -36,6 +36,9 @@ const site = defineCollection({
     promo_titulo: z.string().default(''),
     promo_texto: z.string().default(''),
     promo_imagem: z.string().default('/images/promo.svg'),
+    historia_titulo: z.string().default('Tempero de família em cada frango'),
+    historia_texto: z.string().default(''),
+    historia_imagem: z.string().default('/images/familia.svg'),
     instagram_handle: z.string().default(''),
     instagram_url: z.string().default(''),
     // Cole aqui o código de incorporação do Behold/SnapWidget (opcional).

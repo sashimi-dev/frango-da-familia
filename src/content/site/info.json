@@ -25,6 +25,9 @@
   "promo_titulo": "Combo Família",
   "promo_texto": "Frango inteiro assado + 2 acompanhamentos grandes + refrigerante 2L. Peça pelo WhatsApp e retire quentinho!",
   "promo_imagem": "/images/1000090128.jpg",
+  "historia_titulo": "Tempero de família em cada frango",
+  "historia_texto": "Somos um negócio de família em Luzimangues. Cada frango é temperado com a receita que passa de geração em geração e assado com carinho, conservando a maciez e o sabor de verdade.\n\nTratamos cada pedido como se fosse para a nossa própria mesa.",
+  "historia_imagem": "/images/familia.svg",
   "instagram_handle": "@fran_godafamilia",
   "instagram_url": "https://www.instagram.com/fran_godafamilia",
   "instagram_embed": "<iframe onload=\"iFrameSetup(this)\" src=\"https://app.mirror-app.com/feed-instagram/112e605e-d2e1-42d4-a6f3-d72eb15c6a87/preview\" style=\"width:100%;border:none;overflow:hidden;\" scrolling=\"no\"></iframe>\n<script src=\"https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js\"></script>"

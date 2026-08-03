@@ -1,22 +1,20 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
 import WaIcon from './WaIcon.astro';
-interface Props { whatsapp: string; mensagem: string; }
-const { whatsapp, mensagem } = Astro.props;
+interface Props {
+  whatsapp: string; mensagem: string;
+  titulo: string; texto: string; imagem: string;
+}
+const { whatsapp, mensagem, titulo, texto, imagem } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
 ---
 <section class="story section" id="historia">
   <div class="container">
-    <div class="imgs">
-      <img src="/images/hero.svg" alt="Frango assado" loading="lazy" />
-      <img src="/images/menu/costela.svg" alt="Costela assada" loading="lazy" />
-      <img src="/images/menu/frango-inteiro.svg" alt="Frango inteiro" loading="lazy" />
-    </div>
+    <img class="story-photo" src={imagem} alt="Frango da Família" loading="lazy" width="800" height="600" decoding="async" />
     <div>
       <div class="kicker">Nossa história</div>
-      <h2>Tempero de família em cada frango</h2>
-      <p>Cada frango é temperado com a receita que passa de geração em geração e assado com calma, conservando a maciez e o sabor de verdade.</p>
-      <p>Somos um negócio de família em Luzimangues e tratamos cada pedido como se fosse para a nossa própria mesa.</p>
+      <h2>{titulo}</h2>
+      <p class="story-text">{texto}</p>
       <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener"><WaIcon /> Fazer meu pedido</a>
     </div>
   </div>
