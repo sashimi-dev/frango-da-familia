@@ -49,7 +49,7 @@ section[id],.cat[id]{scroll-margin-top:150px}
 .btn-ghost:hover{background:rgba(255,255,255,.22)}
 
 /* Top bar */
-.topbar{position:sticky;top:0;z-index:30;background:rgba(42,24,16,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--gold-deep)}
+.topbar{position:sticky;top:0;z-index:30;background:var(--wood);border-bottom:2px solid var(--gold-deep);box-shadow:0 6px 18px rgba(0,0,0,.28)}
 .topbar .container{display:flex;align-items:center;gap:16px;height:80px}
 .brandmark{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
 .brandmark .mark{height:66px;width:auto;display:block}
