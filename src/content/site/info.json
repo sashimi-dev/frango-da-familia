@@ -21,10 +21,10 @@
     }
   ],
   "hero_imagem": "/images/hero-frango.jpg",
+  "logo": "/images/logo.webp",
   "promo_titulo": "Combo Família",
   "promo_texto": "Frango inteiro assado + 2 acompanhamentos grandes + refrigerante 2L. Peça pelo WhatsApp e retire quentinho!",
-  "logo": "/images/logo.webp",
-  "promo_imagem": "/images/promo.svg",
+  "promo_imagem": "/images/1000090128.jpg",
   "instagram_handle": "@fran_godafamilia",
   "instagram_url": "https://www.instagram.com/fran_godafamilia",
   "instagram_embed": "<iframe onload=\"iFrameSetup(this)\" src=\"https://app.mirror-app.com/feed-instagram/112e605e-d2e1-42d4-a6f3-d72eb15c6a87/preview\" style=\"width:100%;border:none;overflow:hidden;\" scrolling=\"no\"></iframe>\n<script src=\"https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js\"></script>"
