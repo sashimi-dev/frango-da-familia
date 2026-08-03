@@ -150,7 +150,7 @@ section[id],.cat[id]{scroll-margin-top:130px}
 .hours li{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:1px dashed rgba(255,255,255,.15);font-size:.95rem}
 .hours li:last-child{border:none}
 .hours .h{font-weight:700;color:var(--gold)}
-.info-card .addr{margin:0 0 12px;color:#e6d3bd}
+.info-card .addr{margin:0 0 12px;color:#e6d3bd;white-space:pre-line}
 .info .map{width:100%;height:210px;border:0;border-radius:var(--radius);filter:saturate(.9)}
 
 /* Footer */

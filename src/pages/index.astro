@@ -37,7 +37,7 @@ const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
 
 // ---- SEO ----
 const siteUrl = (Astro.site ?? new URL('https://frango-da-familia.pages.dev')).href.replace(/\/$/, '');
-const description = 'Frango da Família — frango assado na brasa em Palmas - TO. Frango inteiro, meio frango, costela assada e porções. Peça pelo WhatsApp e retire quentinho no Setor Jardim do Porto.';
+const description = 'Frango da Família — frango assado na brasa em Luzimangues (Porto Nacional) - TO. Frango inteiro, meio frango, costela assada e porções. Peça pelo WhatsApp e retire quentinho no Setor Jardim do Porto.';
 const priceToNumber = (p: string) => (p || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
 
 const hasMenuSection = categoriasPresentes.map((cat) => ({
@@ -63,19 +63,19 @@ const jsonld = {
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Avenida A, Quadra 37, Lote 66 (Avenida do Posto Norte Sul)',
-    addressLocality: 'Palmas',
+    streetAddress: 'Avenida A, Quadra 37, Lote 66 (Avenida do Posto Norte Sul), Setor Jardim do Porto, Luzimangues',
+    addressLocality: 'Porto Nacional',
     addressRegion: 'TO',
     addressCountry: 'BR',
   },
-  areaServed: 'Palmas - TO',
+  areaServed: 'Luzimangues, Porto Nacional - TO',
   sameAs: [info.instagram_url].filter(Boolean),
   openingHoursSpecification: openingHoursSpec(schedule),
   hasMenu: { '@type': 'Menu', hasMenuSection },
   acceptsReservations: 'True',
 };
 ---
-<Base title="Frango da Família — Frango assado na brasa em Palmas - TO" description={description} jsonld={jsonld}>
+<Base title="Frango da Família — Frango assado na brasa em Luzimangues - TO" description={description} jsonld={jsonld}>
   <TopBar logo={info.logo} openNow={openNow} />
   <Hero
     tagline={info.tagline}
@@ -95,7 +95,7 @@ const jsonld = {
   <Info horarios={info.horarios} endereco={info.endereco} mapaUrl={info.mapa_url} telefone={info.telefone} whatsapp={info.whatsapp} whatsapp2={info.whatsapp2} mensagem={info.mensagem_whatsapp} />
 
   <footer class="site">
-    <div style="display:flex;align-items:center;justify-content:center;gap:10px"><img src={info.logo} alt="" width="28" height="28" style="border-radius:8px" /> <strong>Frango da Família</strong> — Palmas, Tocantins</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px"><img src={info.logo} alt="" width="28" height="28" style="border-radius:8px" /> <strong>Frango da Família</strong> — Luzimangues, Porto Nacional - TO</div>
     <div class="small">{info.endereco}</div>
     <div class="small">{info.instagram_handle} · {info.telefone}</div>
     <div class="cnpj">Feito com carinho. Peça pelo WhatsApp!</div>
