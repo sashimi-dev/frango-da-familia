@@ -37,7 +37,7 @@ const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
 
 // ---- SEO ----
 const siteUrl = (Astro.site ?? new URL('https://frango-da-familia.pages.dev')).href.replace(/\/$/, '');
-const description = 'Frango da Família — frango assado na brasa em Luzimangues (Porto Nacional) - TO. Frango inteiro, meio frango, costela assada e porções. Peça pelo WhatsApp e retire quentinho no Setor Jardim do Porto.';
+const description = 'Frango da Família — frango assado em Luzimangues (Porto Nacional) - TO. Frango inteiro, meio frango, costela assada e porções. Peça pelo WhatsApp e retire quentinho no Setor Jardim do Porto.';
 const priceToNumber = (p: string) => (p || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
 
 const hasMenuSection = categoriasPresentes.map((cat) => ({
@@ -75,7 +75,7 @@ const jsonld = {
   acceptsReservations: 'True',
 };
 ---
-<Base title="Frango da Família — Frango assado na brasa em Luzimangues - TO" description={description} jsonld={jsonld}>
+<Base title="Frango da Família — Frango assado em Luzimangues - TO" description={description} jsonld={jsonld}>
   <TopBar logo={info.logo} openNow={openNow} />
   <Hero
     tagline={info.tagline}
