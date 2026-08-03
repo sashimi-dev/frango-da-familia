@@ -27,7 +27,7 @@ const temPosts = posts && posts.length > 0;
     ) : embed ? (
       <Fragment>
         <div class="ig-embed" set:html={embed} />
-        <script is:inline src="https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js"></script>
+        <script is:inline defer src="https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js"></script>
       </Fragment>
     ) : (
       <div class="ig-grid">

@@ -6,12 +6,14 @@ interface Props {
   description?: string;
   image?: string;
   jsonld?: unknown;
+  preloadImage?: string;
 }
 const {
   title,
   description = 'Frango assado em Luzimangues (Porto Nacional) - TO. Frango inteiro, meio frango, costela e porções. Peça pelo WhatsApp e retire quentinho.',
   image = '/images/og-image.jpg',
   jsonld,
+  preloadImage,
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://frango-da-familia.pages.dev');
@@ -32,13 +34,22 @@ const ogImage = new URL(image, site).href;
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <link rel="apple-touch-icon" href="/images/logo.png" />
 
-    <!-- Fontes da marca -->
+    {preloadImage && (
+      <link rel="preload" as="image" href={preloadImage} type="image/webp" fetchpriority="high" />
+    )}
+
+    <!-- Fontes da marca (carregadas sem bloquear a renderização) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" />
+    </noscript>
 
     <!-- Palavras-chave / local -->
     <meta name="keywords" content="frango assado, frango assado Luzimangues, delivery frango Luzimangues, comida Luzimangues, frango Porto Nacional TO, costela assada, porções, Setor Jardim do Porto, Frango da Família" />

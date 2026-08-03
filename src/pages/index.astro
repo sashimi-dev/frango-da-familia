@@ -34,6 +34,7 @@ const dayText = Array.from({ length: 7 }, (_, wd) => {
 });
 
 const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
+const heroWebp = info.hero_imagem.replace(/\.(jpe?g|png)$/i, '.webp');
 
 // ---- SEO ----
 const siteUrl = (Astro.site ?? new URL('https://frango-da-familia.pages.dev')).href.replace(/\/$/, '');
@@ -75,7 +76,7 @@ const jsonld = {
   acceptsReservations: 'True',
 };
 ---
-<Base title="Frango da Família — Frango assado em Luzimangues - TO" description={description} jsonld={jsonld}>
+<Base title="Frango da Família — Frango assado em Luzimangues - TO" description={description} jsonld={jsonld} preloadImage={heroWebp}>
   <TopBar logo={info.logo} openNow={openNow} />
   <Hero
     tagline={info.tagline}

@@ -8,9 +8,13 @@ interface Props {
 }
 const { tagline, imagem, whatsapp, mensagem, todayHoras, endereco, telefone } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
+const heroWebp = imagem.replace(/\.(jpe?g|png)$/i, '.webp');
 ---
 <section class="hero" id="topo">
-  <img class="bg" src={imagem} alt="Frango assado da casa" width="1200" height="800" />
+  <picture>
+    <source srcset={heroWebp} type="image/webp" />
+    <img class="bg" src={imagem} alt="Frango assado da casa" width="1200" height="800" fetchpriority="high" decoding="async" />
+  </picture>
   <div class="scrim"></div>
   <div class="container">
     <div class="inner">
