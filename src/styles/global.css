@@ -59,7 +59,7 @@ section[id],.cat[id]{scroll-margin-top:150px}
   .brandmark .mark{height:56px}
   .brandmark .word{height:23px}
   .topbar .container{gap:8px}
-  .badge{font-size:.72rem;padding:.32rem .55rem}
+  .badge{font-size:.76rem}
 }
 @media(max-width:400px){ .topbar .right{display:none} }
 .navlinks{display:none;gap:22px;margin-left:6px}
@@ -68,12 +68,12 @@ section[id],.cat[id]{scroll-margin-top:150px}
 .topbar .right{margin-left:auto;display:flex;align-items:center;gap:12px}
 
 /* Open badge */
-.badge{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;padding:.35rem .75rem;border-radius:999px;border:1px solid transparent}
-.badge .dot{width:8px;height:8px;border-radius:50%}
-.badge.open{color:#c9f5d8;background:rgba(37,195,104,.16);border-color:rgba(37,195,104,.5)}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:700;white-space:nowrap}
+.badge .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.badge.open{color:#8fe3ac}
 .badge.open .dot{background:#37e07d;box-shadow:0 0 0 3px rgba(55,224,125,.25)}
-.badge.closed{color:#f6cfcf;background:rgba(176,32,31,.18);border-color:rgba(176,32,31,.5)}
-.badge.closed .dot{background:#e2534f}
+.badge.closed{color:#efa8a8}
+.badge.closed .dot{background:#e2534f;box-shadow:0 0 0 3px rgba(226,83,79,.2)}
 
 /* Hero */
 .hero{position:relative;color:#fff;overflow:hidden;background:var(--wood)}
