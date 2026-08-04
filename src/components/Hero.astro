@@ -2,18 +2,19 @@
 import { whatsappLink } from '../lib/whatsapp';
 import WaIcon from './WaIcon.astro';
 import Icon from './Icon.astro';
+import { imgSrc } from '../lib/img';
 interface Props {
   tagline: string; imagem: string; whatsapp: string; mensagem: string;
   todayHoras: string; endereco: string; telefone: string;
 }
 const { tagline, imagem, whatsapp, mensagem, todayHoras, endereco, telefone } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
-const heroWebp = imagem.replace(/\.(jpe?g|png)$/i, '.webp');
+const heroWebp = imgSrc(imagem.replace(/\.(jpe?g|png)$/i, '.webp'));
 ---
 <section class="hero" id="topo">
   <picture>
     <source srcset={heroWebp} type="image/webp" />
-    <img class="bg" src={imagem} alt="Frango assado da casa" width="1200" height="800" fetchpriority="high" decoding="async" />
+    <img class="bg" src={imgSrc(imagem)} alt="Frango assado no ponto certo — Frango da Família em Luzimangues, Porto Nacional" width="1200" height="800" fetchpriority="high" decoding="async" />
   </picture>
   <div class="scrim"></div>
   <div class="container">

@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
+import { imgSrc } from '../lib/img';
 import WaIcon from './WaIcon.astro';
 interface Props {
   whatsapp: string; mensagem: string;
@@ -10,7 +11,7 @@ const waHref = whatsappLink(whatsapp, mensagem);
 ---
 <section class="story section" id="historia">
   <div class="container">
-    <img class="story-photo" src={imagem} alt="Frango da Família" loading="lazy" width="800" height="450" decoding="async" />
+    <img class="story-photo" src={imgSrc(imagem)} alt="Donos do Frango da Família em Luzimangues" loading="lazy" width="800" height="450" decoding="async" />
     <div>
       <div class="kicker">Nossa história</div>
       <h2>{titulo}</h2>

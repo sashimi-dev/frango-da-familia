@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
+import { imgSrc } from '../lib/img';
 import WaIcon from './WaIcon.astro';
 interface Props { titulo: string; texto: string; imagem: string; whatsapp: string; mensagem: string; }
 const { titulo, texto, imagem, whatsapp, mensagem } = Astro.props;
@@ -9,7 +10,7 @@ const mostrar = Boolean(titulo || texto);
 {mostrar && (
   <section class="combo section" id="combo">
     <div class="container">
-      <img class="promo-img" src={imagem} alt={titulo} loading="lazy" />
+      <img class="promo-img" src={imgSrc(imagem)} alt={titulo} loading="lazy" decoding="async" />
       <div>
         <h2>{titulo}</h2>
         <p>{texto}</p>

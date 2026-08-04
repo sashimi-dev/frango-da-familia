@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
+import { imgSrc } from '../lib/img';
 import WaIcon from './WaIcon.astro';
 
 interface Props {
@@ -14,7 +15,7 @@ const { nome, descricao, preco, foto, whatsapp, mensagemBase } = Astro.props;
 const waHref = whatsappLink(whatsapp, `${mensagemBase} ${nome}`);
 ---
 <article class="item">
-  <img class="photo" src={foto} alt={nome} loading="lazy" width="600" height="450" />
+  <img class="photo" src={imgSrc(foto)} alt={`${nome} — Frango da Família, Luzimangues`} loading="lazy" width="600" height="450" decoding="async" />
   <div class="body">
     <h4 class="name">{nome}</h4>
     <p class="desc">{descricao}</p>
