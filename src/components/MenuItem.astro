@@ -1,6 +1,6 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
-import { imgSrc } from '../lib/img';
+import { imgSrc, slugify } from '../lib/img';
 import WaIcon from './WaIcon.astro';
 
 interface Props {
@@ -13,9 +13,13 @@ interface Props {
 }
 const { nome, descricao, preco, foto, whatsapp, mensagemBase } = Astro.props;
 const waHref = whatsappLink(whatsapp, `${mensagemBase} ${nome}`);
+// Foto do cardápio: usa a versão limpa e otimizada gerada no build
+// (public/images/menu/<slug>.jpg). Se for placeholder/svg, usa o arquivo direto.
+const temFoto = foto && /\.(jpe?g|png|webp)$/i.test(foto);
+const fotoSrc = temFoto ? `/images/menu/${slugify(nome)}.jpg` : imgSrc(foto);
 ---
 <article class="item">
-  <img class="photo" src={imgSrc(foto)} alt={`${nome} — Frango da Família, Luzimangues`} loading="lazy" width="600" height="450" decoding="async" />
+  <img class="photo" src={fotoSrc} alt={`${nome} — Frango da Família, Luzimangues`} loading="lazy" width="600" height="450" decoding="async" />
   <div class="body">
     <h4 class="name">{nome}</h4>
     <p class="desc">{descricao}</p>
