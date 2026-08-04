@@ -55,18 +55,9 @@ for (const { slug, src } of menuItems) {
   try {
     if (!existsSync(src)) { console.warn('[optimize-images] fonte não encontrada:', src); continue; }
     const meta = await sharp(src).metadata();
-    const cw = Math.ceil(Math.max(meta.width / 0.9, (meta.height / 0.9) * TARGET));
-    const ch = Math.ceil(cw / TARGET);
-    const left = Math.floor((cw - meta.width) / 2);
-    const right = cw - meta.width - left;
-    const top = Math.floor((ch - meta.height) / 2);
-    const bottom = ch - meta.height - top;
-    const buf = await sharp(src)
-      .flatten({ background: CREAM })
-      .extend({ top, bottom, left, right, background: CREAM })
-      .resize({ width: Math.min(cw, MENU_MAXW) })
-      .jpeg({ quality: 74, mozjpeg: true })
-      .toBuffer();
+    let pipe = sharp(src);
+    if (meta.width > MENU_MAXW) pipe = pipe.resize({ width: MENU_MAXW });
+    const buf = await pipe.jpeg({ quality: 74, mozjpeg: true }).toBuffer();
     await writeFile(path.join(MENU_OUT, `${slug}.jpg`), buf);
     made++;
   } catch (e) {
