@@ -5,7 +5,7 @@
   "mensagem_whatsapp": "Olá, Frango da Família! Gostaria de fazer um pedido:",
   "telefone": "(63) 99255-3014",
   "endereco": "Avenida A, Quadra 37, Lote 66\n(Avenida do Posto Norte Sul)\nSetor Jardim do Porto\nLuzimangues — Porto Nacional - TO",
-  "mapa_url": "https://www.google.com/maps/search/?api=1&query=Frango+da+Familia+Luzimangues+Porto+Nacional+TO",
+  "mapa_url": "https://maps.app.goo.gl/19z4GGpg8NBhTbHJA",
   "horarios": [
     {
       "dias": "Segunda a Sexta",
@@ -28,8 +28,8 @@
   "historia_titulo": "Feito por família, para a sua família",
   "historia_texto": "O Frango da Família nasceu de um sonho simples: levar até a sua casa um frango assado no ponto certo, com o tempero que aprendemos em família e guardamos com carinho.\n\nAqui no Setor Jardim do Porto, em Luzimangues, cada pedido é preparado como se fosse para a nossa própria mesa. Do frango às porções, tudo é feito com dedicação, capricho e ingredientes escolhidos a dedo.\n\nMais do que vender comida, a gente quer fazer parte dos seus melhores momentos — o almoço de domingo, a reunião com quem se ama e o prazer de comer bem sem sair de casa.",
   "historia_imagem": "/images/ChatGPT Image Aug 3, 2026, 10_03_05 PM.png",
+  "historia_assinatura": "Elvis & Arquênia",
   "instagram_handle": "@fran_godafamilia",
   "instagram_url": "https://www.instagram.com/fran_godafamilia",
-  "instagram_embed": "<iframe onload=\"iFrameSetup(this)\" src=\"https://app.mirror-app.com/feed-instagram/112e605e-d2e1-42d4-a6f3-d72eb15c6a87/preview\" style=\"width:100%;border:none;overflow:hidden;\" scrolling=\"no\"></iframe>\n<script src=\"https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js\"></script>",
-  "historia_assinatura": "Elvis & Arquênia"
+  "instagram_embed": "<iframe onload=\"iFrameSetup(this)\" src=\"https://app.mirror-app.com/feed-instagram/112e605e-d2e1-42d4-a6f3-d72eb15c6a87/preview\" style=\"width:100%;border:none;overflow:hidden;\" scrolling=\"no\"></iframe>\n<script src=\"https://cdn.jsdelivr.net/npm/@mirrorapp/iframe-bridge@latest/dist/index.umd.js\"></script>"
 }
