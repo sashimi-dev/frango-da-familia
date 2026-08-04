@@ -8,10 +8,13 @@ interface Props {
 }
 const { whatsapp, mensagem, titulo, texto, imagem, assinatura } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
+// Usa a versão comprimida gerada no build; se for placeholder/svg, usa direto.
+const temFoto = imagem && /\.(jpe?g|png|webp)$/i.test(imagem);
+const fotoSrc = temFoto ? '/images/historia.jpg' : imgSrc(imagem);
 ---
 <section class="story section" id="historia">
   <div class="container">
-    <img class="story-photo" src={imgSrc(imagem)} alt="Donos do Frango da Família em Luzimangues" loading="lazy" width="800" height="450" decoding="async" />
+    <img class="story-photo" src={fotoSrc} alt="Donos do Frango da Família em Luzimangues" loading="lazy" width="800" height="450" decoding="async" />
     <div>
       <div class="kicker">Nossa história</div>
       <h2>{titulo}</h2>

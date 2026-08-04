@@ -48,7 +48,19 @@ try {
   }
 } catch {}
 
-// 2) Gera fotos limpas do cardápio, enquadradas em 4:3
+// 1b) Imagens únicas (ex.: história) -> versão limpa/comprimida derivada do /admin
+const singletons = [];
+try {
+  const info = JSON.parse(await readFile('src/content/site/info.json', 'utf8'));
+  const h = info.historia_imagem;
+  if (h && /\.(jpe?g|png|webp)$/i.test(h)) {
+    singletons.push({ out: 'historia.jpg', src: 'public' + h, maxw: 1400 });
+    menuSrcNames.add(path.basename(h)); // pula o arquivo fonte (grande)
+    menuSrcNames.add('historia.jpg');   // pula o gerado
+  }
+} catch {}
+
+// 2) Gera fotos limpas do cardápio (sem moldura — apenas redimensiona/comprime)
 await mkdir(MENU_OUT, { recursive: true });
 let made = 0;
 for (const { slug, src } of menuItems) {
@@ -62,6 +74,20 @@ for (const { slug, src } of menuItems) {
     made++;
   } catch (e) {
     console.warn('[optimize-images] pulou cardápio', slug, e?.message);
+  }
+}
+
+// 2b) Gera as imagens únicas comprimidas
+for (const { out, src, maxw } of singletons) {
+  try {
+    if (!existsSync(src)) continue;
+    const meta = await sharp(src).metadata();
+    let pipe = sharp(src);
+    if (meta.width > maxw) pipe = pipe.resize({ width: maxw });
+    const buf = await pipe.jpeg({ quality: 78, mozjpeg: true }).toBuffer();
+    await writeFile(path.join(IMG_DIR, out), buf);
+  } catch (e) {
+    console.warn('[optimize-images] pulou única', out, e?.message);
   }
 }
 
