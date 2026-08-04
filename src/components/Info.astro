@@ -11,6 +11,14 @@ const { horarios, endereco, mapaUrl, telefone, whatsapp, whatsapp2, mensagem } =
 const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(endereco)}&output=embed`;
 const wa1 = whatsappLink(whatsapp, mensagem);
 const wa2 = whatsapp2 ? whatsappLink(whatsapp2, mensagem) : '';
+const formatBR = (raw: string) => {
+  const d = (raw || '').replace(/\D/g, '').replace(/^55/, '');
+  if (d.length < 10) return raw;
+  const ddd = d.slice(0, 2);
+  const rest = d.slice(2);
+  return `(${ddd}) ${rest.slice(0, rest.length - 4)}-${rest.slice(-4)}`;
+};
+const tel2 = whatsapp2 ? formatBR(whatsapp2) : '';
 ---
 <section class="info section" id="info">
   <div class="container">
@@ -33,7 +41,7 @@ const wa2 = whatsapp2 ? whatsappLink(whatsapp2, mensagem) : '';
         <p class="addr">{endereco}</p>
         <div style="display:flex;flex-direction:column;gap:10px">
           <a class="btn btn-wa" href={wa1} target="_blank" rel="noopener"><WaIcon /> {telefone || 'WhatsApp 1'}</a>
-          {wa2 && <a class="btn btn-wa" href={wa2} target="_blank" rel="noopener"><WaIcon /> WhatsApp 2</a>}
+          {wa2 && <a class="btn btn-wa" href={wa2} target="_blank" rel="noopener"><WaIcon /> {tel2}</a>}
           {mapaUrl && <a class="btn btn-gold" href={mapaUrl} target="_blank" rel="noopener">Abrir no Google Maps</a>}
         </div>
       </div>
