@@ -36,7 +36,7 @@ function diasToWeekdays(dias: string): number[] {
 function parseInterval(horario: string): Interval | null {
   const t = normalize(horario);
   if (t.includes('fechado')) return null;
-  const m = t.match(/(\d{1,2})(?:[:h](\d{2})?)?\s*(?:as|a|-|ate)\s*(\d{1,2})(?:[:h](\d{2})?)?/);
+  const m = t.match(/(\d{1,2})(?:[.:h](\d{2}))?\s*h?\s*(?:as|ate|a|-)\s*(\d{1,2})(?:[.:h](\d{2}))?\s*h?/);
   if (!m) return null;
   const start = parseInt(m[1], 10) * 60 + (m[2] ? parseInt(m[2], 10) : 0);
   const end = parseInt(m[3], 10) * 60 + (m[4] ? parseInt(m[4], 10) : 0);
