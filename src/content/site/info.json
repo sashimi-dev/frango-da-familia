@@ -16,11 +16,14 @@
       "horario": "10.30h às 14h"
     }
   ],
-  "categorias_fim_de_semana": ["Frangos e Carnes", "Porções"],
+  "categorias_fim_de_semana": [
+    "Frangos e Carnes",
+    "Porções"
+  ],
   "feriados": [],
   "usar_feriados_nacionais": true,
   "aviso_semana": "De segunda a sexta servimos apenas pastéis e bebidas. Frango, costela e porções: aos sábados, domingos e feriados.",
-  "hero_imagem": "/images/hero-frango.jpg",
+  "hero_imagem": "/images/hero-frango.webp",
   "logo": "/images/logo.webp",
   "promo_titulo": "Assado na hora, o dia todo",
   "promo_texto": "Nosso frango gira devagarinho até dourar no ponto certo. Sinta o cheiro e peça o seu pelo WhatsApp!",
