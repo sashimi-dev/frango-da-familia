@@ -31,6 +31,14 @@ const site = defineCollection({
         horario: z.string(),
       })
     ),
+    // Disponibilidade: categorias que só podem ser pedidas sáb, dom e feriados.
+    categorias_fim_de_semana: z.array(z.string()).default(['Frangos e Carnes', 'Porções']),
+    // Feriados locais extras (AAAA-MM-DD). Os nacionais são automáticos.
+    feriados: z.array(z.string()).default([]),
+    usar_feriados_nacionais: z.boolean().default(true),
+    aviso_semana: z
+      .string()
+      .default('De segunda a sexta servimos apenas pastéis e bebidas. Frango, costela e porções: aos sábados, domingos e feriados.'),
     hero_imagem: z.string().default('/images/hero.svg'),
     logo: z.string().default('/images/logo.svg'),
     promo_titulo: z.string().default(''),

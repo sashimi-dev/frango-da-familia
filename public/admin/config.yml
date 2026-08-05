@@ -67,6 +67,20 @@ collections:
             fields:
               - { name: dias, label: "Dias", widget: string, hint: "Ex.: Terça a Sexta" }
               - { name: horario, label: "Horário", widget: string, hint: "Ex.: 11h às 22h" }
+          - name: categorias_fim_de_semana
+            label: "Categorias só no fim de semana e feriados"
+            widget: list
+            required: false
+            hint: "Essas categorias só podem ser pedidas aos sábados, domingos e feriados (ex.: Frangos e Carnes, Porções). Nos dias de semana aparecem bloqueadas."
+            field: { name: categoria, label: "Categoria", widget: string }
+          - name: feriados
+            label: "Feriados locais (datas extras)"
+            widget: list
+            required: false
+            hint: "Datas no formato AAAA-MM-DD em que vale o cardápio de fim de semana (ex.: 2026-10-05). Os feriados nacionais já são automáticos."
+            field: { name: data, label: "Data (AAAA-MM-DD)", widget: string }
+          - { name: usar_feriados_nacionais, label: "Aplicar feriados nacionais automaticamente?", widget: boolean, default: true, required: false }
+          - { name: aviso_semana, label: "Aviso exibido de segunda a sexta", widget: text, required: false, hint: "Mensagem mostrada nos dias de semana explicando o que está disponível." }
           - { name: hero_imagem, label: "Imagem principal (hero)", widget: image, required: false }
           - { name: logo, label: "Logo", widget: image, required: false }
           - { name: promo_titulo, label: "Destaque — título", widget: string, required: false }

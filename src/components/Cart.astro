@@ -48,10 +48,19 @@ const { whatsapp } = Astro.props;
   </div>
 </aside>
 
-<script define:vars={{ whatsapp }}>
+<script>
+  import { todayTO, isFullMenuDay } from '../lib/day';
   (function () {
+    const cfg = JSON.parse(document.getElementById('fdf-config')?.textContent || '{}');
+    const whatsapp = cfg.whatsapp || '';
+    const day = todayTO();
+    const { fullMenu } = isFullMenuDay(day, { extra: cfg.feriados, useNational: cfg.usarFeriados });
     const KEY = 'fdf_cart_v1';
     let cart = load();
+    // Nomes dos itens só de fim de semana (marcados com data-weekend no DOM).
+    const weekendNames = new Set(Array.from(document.querySelectorAll('[data-additem][data-weekend]')).map((el) => el.getAttribute('data-nome')));
+    // Em dia de semana, remove do carrinho itens que não estão disponíveis.
+    if (!fullMenu) { let changed = false; for (const k of Object.keys(cart)) if (weekendNames.has(k)) { delete cart[k]; changed = true; } if (changed) save(); }
 
     function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
     function save() { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch {} }
@@ -63,7 +72,7 @@ const { whatsapp } = Astro.props;
     function totals() { let c = 0, t = 0; for (const k in cart) { c += cart[k].qty; t += cart[k].qty * cart[k].preco; } return { count: c, total: t }; }
     function setText(sel, v) { document.querySelectorAll(sel).forEach((e) => (e.textContent = v)); }
 
-    function add(nome, preco) { if (!cart[nome]) cart[nome] = { preco: priceNum(preco), qty: 0 }; cart[nome].qty++; save(); render(); }
+    function add(nome, preco) { if (!fullMenu && weekendNames.has(nome)) return; if (!cart[nome]) cart[nome] = { preco: priceNum(preco), qty: 0 }; cart[nome].qty++; save(); render(); }
     function inc(nome) { if (cart[nome]) cart[nome].qty++; save(); render(); }
     function dec(nome) { if (cart[nome]) { cart[nome].qty--; if (cart[nome].qty <= 0) delete cart[nome]; } save(); render(); }
 
@@ -71,10 +80,19 @@ const { whatsapp } = Astro.props;
       // Controles nos cards
       document.querySelectorAll('[data-additem]').forEach((el) => {
         const nome = el.getAttribute('data-nome');
-        const q = (cart[nome] && cart[nome].qty) || 0;
         const addBtn = el.querySelector('[data-add]');
         const step = el.querySelector('[data-stepper]');
+        const lock = el.querySelector('[data-wklock]');
+        const card = el.closest('.item, .drink-row');
         if (!addBtn || !step) return;
+        // Item de fim de semana num dia de semana -> bloqueado.
+        if (!fullMenu && el.hasAttribute('data-weekend')) {
+          addBtn.hidden = true; step.hidden = true; if (lock) lock.hidden = false; if (card) card.classList.add('is-locked');
+          return;
+        }
+        if (lock) lock.hidden = true;
+        if (card) card.classList.remove('is-locked');
+        const q = (cart[nome] && cart[nome].qty) || 0;
         if (q > 0) { addBtn.hidden = true; step.hidden = false; const qs = step.querySelector('[data-qty]'); if (qs) qs.textContent = q; }
         else { addBtn.hidden = false; step.hidden = true; }
       });

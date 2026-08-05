@@ -9,8 +9,9 @@ interface Props {
   foto: string;
   whatsapp?: string;
   mensagemBase?: string;
+  weekendOnly?: boolean;
 }
-const { nome, descricao, preco, foto } = Astro.props;
+const { nome, descricao, preco, foto, weekendOnly } = Astro.props;
 // Foto do cardápio: usa a versão limpa e otimizada gerada no build
 // (public/images/menu/<slug>.jpg). Se for placeholder/svg, usa o arquivo direto.
 const temFoto = foto && /\.(jpe?g|png|webp)$/i.test(foto);
@@ -23,7 +24,7 @@ const fotoSrc = temFoto ? `/images/menu/${slugify(nome)}.jpg` : imgSrc(foto);
     <p class="desc">{descricao}</p>
     <div class="row">
       <span class="price"><small>R$</small> {preco}</span>
-      <AddControl nome={nome} preco={preco} />
+      <AddControl nome={nome} preco={preco} weekendOnly={weekendOnly} />
     </div>
   </div>
 </article>

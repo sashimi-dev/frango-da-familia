@@ -34,6 +34,17 @@ const dayText = Array.from({ length: 7 }, (_, wd) => {
   return todayHorario(info.horarios, fake);
 });
 
+// Configuração enviada ao navegador (disponibilidade por dia + horários + feriados).
+const weekendSchedule = schedule[6] || schedule[0] || [];
+const fdfConfig = {
+  schedule,
+  weekendSchedule,
+  dayText,
+  feriados: info.feriados || [],
+  usarFeriados: info.usar_feriados_nacionais !== false,
+  whatsapp: info.whatsapp,
+};
+
 const waHeroHref = whatsappLink(info.whatsapp, info.mensagem_whatsapp);
 const heroWebp = info.hero_imagem.replace(/\.(jpe?g|png)$/i, '.webp');
 
@@ -89,7 +100,10 @@ const jsonld = {
     telefone={info.telefone}
   />
   <Chips categorias={categoriasPresentes} />
-  <MenuSection itens={itens} whatsapp={info.whatsapp} mensagemBase={info.mensagem_whatsapp} ordemCategorias={ordemCategorias} />
+  <div class="weekday-note" data-weekdaynote hidden>
+    <div class="container">{info.aviso_semana}</div>
+  </div>
+  <MenuSection itens={itens} whatsapp={info.whatsapp} mensagemBase={info.mensagem_whatsapp} ordemCategorias={ordemCategorias} categoriasFimDeSemana={info.categorias_fim_de_semana} />
   <Combo titulo={info.promo_titulo} texto={info.promo_texto} imagem={info.promo_imagem} whatsapp={info.whatsapp} mensagem={`${info.mensagem_whatsapp} ${info.promo_titulo}`} />
   <Story whatsapp={info.whatsapp} mensagem={info.mensagem_whatsapp} titulo={info.historia_titulo} texto={info.historia_texto} imagem={info.historia_imagem} assinatura={info.historia_assinatura} />
   <Reviews />
@@ -106,20 +120,20 @@ const jsonld = {
   <a class="fab" href={waHeroHref} target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><WaIcon size={30} /></a>
   <Cart whatsapp={info.whatsapp} />
 
-  <script define:vars={{ schedule, dayText }}>
+  <script type="application/json" id="fdf-config" is:inline set:html={JSON.stringify(fdfConfig)} />
+
+  <script>
+    import { todayTO, isFullMenuDay } from '../lib/day';
     (function () {
-      function nowTO() {
-        const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Araguaina', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
-        const map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-        const wd = map[p.find((x) => x.type === 'weekday').value];
-        let h = parseInt(p.find((x) => x.type === 'hour').value, 10);
-        if (h === 24) h = 0;
-        const m = parseInt(p.find((x) => x.type === 'minute').value, 10);
-        return { wd, mins: h * 60 + m };
-      }
-      const { wd, mins } = nowTO();
-      const intervals = (schedule && schedule[wd]) || [];
-      const open = intervals.some((i) => mins >= i.start && mins < i.end);
+      const cfg = JSON.parse(document.getElementById('fdf-config')?.textContent || '{}');
+      const t = todayTO();
+      const { fullMenu, holiday } = isFullMenuDay(t, { extra: cfg.feriados, useNational: cfg.usarFeriados });
+      document.body.classList.toggle('menu-completo', fullMenu);
+      document.body.classList.toggle('menu-semana', !fullMenu);
+
+      // Em feriado (mesmo em dia de semana) usa o horário de fim de semana.
+      const intervals = fullMenu ? (cfg.weekendSchedule || []) : ((cfg.schedule && cfg.schedule[t.wd]) || []);
+      const open = intervals.some((i) => t.mins >= i.start && t.mins < i.end);
       document.querySelectorAll('[data-openbadge]').forEach((el) => {
         el.classList.toggle('open', open);
         el.classList.toggle('closed', !open);
@@ -127,9 +141,12 @@ const jsonld = {
         el.textContent = open ? 'Aberto agora' : 'Fechado agora';
         if (dot) el.prepend(dot);
       });
-      document.querySelectorAll('[data-today-horas]').forEach((el) => {
-        if (dayText && dayText[wd]) el.textContent = dayText[wd];
-      });
+
+      let horas = fullMenu ? (cfg.dayText && (cfg.dayText[6] || cfg.dayText[0])) : (cfg.dayText && cfg.dayText[t.wd]);
+      if (holiday && horas) horas = 'Feriado — ' + horas;
+      document.querySelectorAll('[data-today-horas]').forEach((el) => { if (horas) el.textContent = horas; });
+
+      document.querySelectorAll('[data-weekdaynote]').forEach((el) => { el.hidden = fullMenu; });
     })();
   </script>
 </Base>

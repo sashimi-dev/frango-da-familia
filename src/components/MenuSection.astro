@@ -4,8 +4,10 @@ import AddControl from './AddControl.astro';
 interface Item { nome: string; descricao: string; preco: string; categoria: string; foto: string; ordem: number; }
 // Categorias mostradas como lista compacta (ex.: bebidas), em vez de cards com foto.
 const categoriasLista = ['Bebidas'];
-interface Props { itens: Item[]; whatsapp: string; mensagemBase: string; ordemCategorias: string[]; }
-const { itens, whatsapp, mensagemBase, ordemCategorias } = Astro.props;
+interface Props { itens: Item[]; whatsapp: string; mensagemBase: string; ordemCategorias: string[]; categoriasFimDeSemana?: string[]; }
+const { itens, whatsapp, mensagemBase, ordemCategorias, categoriasFimDeSemana = [] } = Astro.props;
+// Categorias que só podem ser pedidas no fim de semana/feriados.
+const weekendSet = new Set(categoriasFimDeSemana);
 
 const slug = (s: string) => 'cat-' + s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -40,14 +42,14 @@ for (const c of ordenadas) porCategoria[c].sort((a, b) => a.ordem - b.ordem);
                   {item.descricao && <span class="drink-desc">{item.descricao}</span>}
                 </div>
                 <span class="drink-price"><small>R$</small> {item.preco}</span>
-                <AddControl nome={item.nome} preco={item.preco} />
+                <AddControl nome={item.nome} preco={item.preco} weekendOnly={weekendSet.has(item.categoria)} />
               </div>
             ))}
           </div>
         ) : (
           <div class="grid">
             {porCategoria[cat].map((item) => (
-              <MenuItem nome={item.nome} descricao={item.descricao} preco={item.preco} foto={item.foto} whatsapp={whatsapp} mensagemBase={mensagemBase} />
+              <MenuItem nome={item.nome} descricao={item.descricao} preco={item.preco} foto={item.foto} whatsapp={whatsapp} mensagemBase={mensagemBase} weekendOnly={weekendSet.has(item.categoria)} />
             ))}
           </div>
         )}

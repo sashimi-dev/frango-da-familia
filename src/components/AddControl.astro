@@ -1,12 +1,13 @@
 ---
-interface Props { nome: string; preco: string; }
-const { nome, preco } = Astro.props;
+interface Props { nome: string; preco: string; weekendOnly?: boolean; }
+const { nome, preco, weekendOnly = false } = Astro.props;
 ---
-<div class="add" data-additem data-nome={nome} data-preco={preco}>
+<div class="add" data-additem data-nome={nome} data-preco={preco} data-weekend={weekendOnly ? '1' : undefined}>
   <button type="button" class="mini add-btn" data-add aria-label={`Adicionar ${nome} ao pedido`}>+ Adicionar</button>
   <div class="stepper" data-stepper hidden>
     <button type="button" class="step" data-dec aria-label={`Diminuir ${nome}`}>−</button>
     <span class="qty" data-qty>1</span>
     <button type="button" class="step" data-inc aria-label={`Aumentar ${nome}`}>+</button>
   </div>
+  <span class="wk-lock" data-wklock hidden>Sáb, dom e feriados</span>
 </div>

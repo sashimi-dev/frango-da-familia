@@ -14,12 +14,12 @@
     {
       "dias": "Sábado e Domingo",
       "horario": "10.30h às 14h"
-    },
-    {
-      "dias": "Segunda-feira",
-      "horario": "Fechado"
     }
   ],
+  "categorias_fim_de_semana": ["Frangos e Carnes", "Porções"],
+  "feriados": [],
+  "usar_feriados_nacionais": true,
+  "aviso_semana": "De segunda a sexta servimos apenas pastéis e bebidas. Frango, costela e porções: aos sábados, domingos e feriados.",
   "hero_imagem": "/images/hero-frango.jpg",
   "logo": "/images/logo.webp",
   "promo_titulo": "Combo Família",
