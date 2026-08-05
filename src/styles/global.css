@@ -283,5 +283,5 @@ body.cart-open{overflow:hidden}
   .drink-row{grid-template-columns:1fr auto;grid-template-areas:"info price" "add add";row-gap:10px}
   .drink-info{grid-area:info}
   .drink-price{grid-area:price}
-  .drink-row .add{grid-area:add;justify-self:center}
+  .drink-row .add{grid-area:add;justify-self:end}
 }
