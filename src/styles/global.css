@@ -288,9 +288,7 @@ body.cart-open{overflow:hidden}
 
 /* ---------- Disponibilidade (fim de semana / feriados) ---------- */
 .wk-lock{display:inline-flex;align-items:center;gap:.35rem;background:#fff4e2;color:#b9540b;border:1px solid #f0c489;font-weight:700;font-size:.78rem;padding:.5rem .8rem;border-radius:999px;white-space:nowrap;line-height:1.05;text-align:center}
-.item.is-locked .photo{filter:saturate(.55) brightness(.98)}
-.item.is-locked .name{color:var(--muted)}
-.drink-row.is-locked{opacity:.72}
+.drink-row.is-locked{opacity:.85}
 .weekday-note{background:#fff4e2;border-bottom:1px solid #f0c489;color:#7a3d08}
 .weekday-note .container{padding:11px 20px;font-size:.9rem;font-weight:600;text-align:center;line-height:1.4}
 

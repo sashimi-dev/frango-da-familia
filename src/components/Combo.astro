@@ -6,7 +6,7 @@ const { titulo, texto, whatsapp, mensagem } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
 ---
 <section class="rvideo-band" id="combo" aria-label="Nosso frango assando na hora">
-  <video class="rvideo" autoplay muted loop playsinline preload="metadata" poster="/images/roastery-poster.jpg">
+  <video class="rvideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="/images/roastery-poster.jpg">
     <source src="/videos/roastery.webm" type="video/webm" />
     <source src="/videos/roastery.mp4" type="video/mp4" />
   </video>
@@ -19,3 +19,23 @@ const waHref = whatsappLink(whatsapp, mensagem);
     <a class="btn btn-gold" href={waHref} target="_blank" rel="noopener"><WaIcon /> Peça pelo WhatsApp</a>
   </div>
 </section>
+
+<script>
+  // Alguns navegadores móveis (ex.: Opera) bloqueiam o autoplay. Este empurrãozinho garante a reprodução.
+  (function () {
+    const v = document.querySelector('.rvideo');
+    if (!v) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    v.muted = true; v.defaultMuted = true; v.setAttribute('muted', '');
+    const go = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    go();
+    ['touchstart', 'pointerdown', 'click', 'scroll', 'keydown'].forEach((ev) =>
+      window.addEventListener(ev, go, { once: true, passive: true })
+    );
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) go(); }), { threshold: 0.2 }).observe(v);
+    }
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) go(); });
+  })();
+</script>
