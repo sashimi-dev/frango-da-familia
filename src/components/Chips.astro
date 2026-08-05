@@ -8,3 +8,15 @@ const slug = (s: string) => 'cat-' + s.toLowerCase().normalize('NFD').replace(/[
     {categorias.map((c) => <a class="chip" href={`#${slug(c)}`}>{c}</a>)}
   </div>
 </div>
+<script>
+  // Dica sutil: se as categorias não couberem, dá um "empurrãozinho" ao carregar.
+  (function () {
+    const el = document.querySelector('.chips .container');
+    if (!el) return;
+    if (el.scrollWidth <= el.clientWidth + 8) return; // já cabe tudo
+    setTimeout(() => {
+      el.scrollTo({ left: 56, behavior: 'smooth' });
+      setTimeout(() => el.scrollTo({ left: 0, behavior: 'smooth' }), 700);
+    }, 800);
+  })();
+</script>

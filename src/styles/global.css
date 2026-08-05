@@ -105,7 +105,9 @@ section[id],.cat[id]{scroll-margin-top:150px}
 
 /* Category chips */
 .chips{position:sticky;top:80px;z-index:20;background:var(--cream);border-bottom:1px solid var(--line)}
-.chips .container{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:13px 20px}
+.chips::after{content:'';position:absolute;top:0;right:0;bottom:1px;width:40px;background:linear-gradient(to right,transparent,var(--cream));pointer-events:none}
+.chips .container{display:flex;gap:10px;flex-wrap:nowrap;overflow-x:auto;padding:13px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips .container::-webkit-scrollbar{display:none}
 .chip{white-space:nowrap;font-weight:700;font-size:.9rem;color:var(--brand-dark);background:#fff;border:1px solid var(--line);padding:.5rem 1rem;border-radius:999px;text-decoration:none}
 .chip:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
 
