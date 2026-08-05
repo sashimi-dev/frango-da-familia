@@ -264,3 +264,6 @@ body.cart-open{overflow:hidden}
 .ot-opt:has(input:focus-visible){outline:2px solid var(--wood);outline-offset:2px}
 .delivery-note{margin:0;font-size:.82rem;color:var(--brand-dark);background:#fdeede;border:1px solid #f3d9be;border-radius:10px;padding:.55rem .7rem}
 .cart-deliv{margin:-4px 0 10px;font-size:.82rem;color:var(--muted);text-align:right}
+
+/* garante que o atributo hidden sempre esconda (vence display:flex etc.) */
+[hidden]{display:none !important}
