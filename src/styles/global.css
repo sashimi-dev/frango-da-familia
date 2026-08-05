@@ -105,7 +105,7 @@ section[id],.cat[id]{scroll-margin-top:150px}
 
 /* Category chips */
 .chips{position:sticky;top:80px;z-index:20;background:var(--cream);border-bottom:1px solid var(--line)}
-.chips .container{display:flex;gap:10px;overflow:auto;padding:13px 20px}
+.chips .container{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:13px 20px}
 .chip{white-space:nowrap;font-weight:700;font-size:.9rem;color:var(--brand-dark);background:#fff;border:1px solid var(--line);padding:.5rem 1rem;border-radius:999px;text-decoration:none}
 .chip:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
 
@@ -281,6 +281,5 @@ body.cart-open{overflow:hidden}
   .drink-row{grid-template-columns:1fr auto;grid-template-areas:"info price" "add add";row-gap:10px}
   .drink-info{grid-area:info}
   .drink-price{grid-area:price}
-  .drink-row .add{grid-area:add}
-  .drink-row .add-btn{width:100%;justify-content:center}
+  .drink-row .add{grid-area:add;justify-self:center}
 }
