@@ -1,0 +1,175 @@
+---
+import WaIcon from './WaIcon.astro';
+interface Props { whatsapp: string; }
+const { whatsapp } = Astro.props;
+---
+<!-- Barra flutuante do pedido -->
+<div class="cartbar" data-cartbar hidden>
+  <button type="button" class="cartbar-btn" data-opencart>
+    <svg class="cart-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <span class="cartbar-count" data-cartcount>0</span>
+    <span class="cartbar-label">Ver pedido</span>
+    <span class="cartbar-total" data-cartbartotal>R$ 0,00</span>
+  </button>
+</div>
+
+<!-- Painel do pedido -->
+<div class="cart-overlay" data-cartoverlay hidden></div>
+<aside class="cart-panel" data-cartpanel hidden aria-label="Seu pedido">
+  <div class="cart-head">
+    <h3>Seu pedido</h3>
+    <button type="button" class="cart-close" data-closecart aria-label="Fechar">×</button>
+  </div>
+  <div class="cart-scroll">
+    <p class="cart-empty" data-cartempty>Seu carrinho está vazio. Toque em “Adicionar” nos pratos do cardápio.</p>
+    <div class="cart-items" data-cartitems></div>
+    <div class="cart-fields">
+      <div class="ordertype" role="radiogroup" aria-label="Tipo de pedido">
+        <label class="ot-opt"><input type="radio" name="tipo" value="retirada" data-tipo checked /><span>Retirada no local</span></label>
+        <label class="ot-opt"><input type="radio" name="tipo" value="entrega" data-tipo /><span>Entrega</span></label>
+      </div>
+      <label class="addr-field" data-addrfield hidden>Endereço para entrega
+        <textarea data-cartaddr rows="2" placeholder="Rua, número, bairro e ponto de referência"></textarea>
+      </label>
+      <p class="delivery-note" data-deliverynote hidden>Taxa de entrega de R$ 10 a R$ 12, conforme a localização — confirmamos no WhatsApp.</p>
+      <label>Seu nome
+        <input type="text" data-cartname placeholder="Como podemos te chamar?" autocomplete="name" />
+      </label>
+      <label>Observações (opcional)
+        <textarea data-cartnotes rows="2" placeholder="Ex.: sem cebola, troco para R$ 100..."></textarea>
+      </label>
+    </div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><strong data-carttotal>R$ 0,00</strong></div>
+    <p class="cart-deliv" data-delivnote hidden>+ taxa de entrega de R$ 10 a R$ 12 (conforme localização)</p>
+    <button type="button" class="btn btn-wa cart-checkout" data-checkout><WaIcon size={20} /> Finalizar pedido no WhatsApp</button>
+    <p class="cart-note">Você confere tudo no WhatsApp antes de enviar. Retirada no Setor Jardim do Porto.</p>
+  </div>
+</aside>
+
+<script define:vars={{ whatsapp }}>
+  (function () {
+    const KEY = 'fdf_cart_v1';
+    let cart = load();
+
+    function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch {} }
+    function priceNum(p) {
+      const n = parseFloat(String(p).replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'));
+      return isNaN(n) ? 0 : n;
+    }
+    const brl = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    function totals() { let c = 0, t = 0; for (const k in cart) { c += cart[k].qty; t += cart[k].qty * cart[k].preco; } return { count: c, total: t }; }
+    function setText(sel, v) { document.querySelectorAll(sel).forEach((e) => (e.textContent = v)); }
+
+    function add(nome, preco) { if (!cart[nome]) cart[nome] = { preco: priceNum(preco), qty: 0 }; cart[nome].qty++; save(); render(); }
+    function inc(nome) { if (cart[nome]) cart[nome].qty++; save(); render(); }
+    function dec(nome) { if (cart[nome]) { cart[nome].qty--; if (cart[nome].qty <= 0) delete cart[nome]; } save(); render(); }
+
+    function render() {
+      // Controles nos cards
+      document.querySelectorAll('[data-additem]').forEach((el) => {
+        const nome = el.getAttribute('data-nome');
+        const q = (cart[nome] && cart[nome].qty) || 0;
+        const addBtn = el.querySelector('[data-add]');
+        const step = el.querySelector('[data-stepper]');
+        if (!addBtn || !step) return;
+        if (q > 0) { addBtn.hidden = true; step.hidden = false; const qs = step.querySelector('[data-qty]'); if (qs) qs.textContent = q; }
+        else { addBtn.hidden = false; step.hidden = true; }
+      });
+      const { count, total } = totals();
+      document.body.classList.toggle('has-cart', count > 0);
+      const bar = document.querySelector('[data-cartbar]');
+      if (bar) bar.hidden = count === 0;
+      setText('[data-cartcount]', count);
+      setText('[data-cartbartotal]', brl(total));
+      setText('[data-carttotal]', brl(total));
+      // Lista no painel
+      const wrap = document.querySelector('[data-cartitems]');
+      const empty = document.querySelector('[data-cartempty]');
+      const keys = Object.keys(cart);
+      if (empty) empty.hidden = keys.length > 0;
+      if (wrap) {
+        wrap.innerHTML = '';
+        keys.forEach((nome) => {
+          const it = cart[nome];
+          const row = document.createElement('div');
+          row.className = 'ci';
+          row.innerHTML =
+            '<div class="ci-info"><span class="ci-nome"></span><span class="ci-sub">' + brl(it.preco) + ' cada</span></div>' +
+            '<div class="stepper"><button type="button" class="step" data-cdec aria-label="Diminuir">−</button><span class="qty">' + it.qty + '</span><button type="button" class="step" data-cinc aria-label="Aumentar">+</button></div>' +
+            '<span class="ci-line">' + brl(it.preco * it.qty) + '</span>';
+          row.querySelector('.ci-nome').textContent = nome;
+          row.querySelector('[data-cdec]').addEventListener('click', () => dec(nome));
+          row.querySelector('[data-cinc]').addEventListener('click', () => inc(nome));
+          wrap.appendChild(row);
+        });
+      }
+      const checkout = document.querySelector('[data-checkout]');
+      if (checkout) checkout.disabled = keys.length === 0;
+    }
+
+    // Delegação: botões dos cards
+    document.addEventListener('click', (e) => {
+      const item = e.target.closest('[data-additem]');
+      if (!item) return;
+      const nome = item.getAttribute('data-nome');
+      const preco = item.getAttribute('data-preco');
+      if (e.target.closest('[data-add]')) add(nome, preco);
+      else if (e.target.closest('[data-inc]')) inc(nome);
+      else if (e.target.closest('[data-dec]')) dec(nome);
+    });
+
+    // Abrir/fechar painel
+    const panel = document.querySelector('[data-cartpanel]');
+    const overlay = document.querySelector('[data-cartoverlay]');
+    function openCart() { if (panel) panel.hidden = false; if (overlay) overlay.hidden = false; document.body.classList.add('cart-open'); }
+    function closeCart() { if (panel) panel.hidden = true; if (overlay) overlay.hidden = true; document.body.classList.remove('cart-open'); }
+    document.querySelector('[data-opencart]')?.addEventListener('click', openCart);
+    document.querySelector('[data-closecart]')?.addEventListener('click', closeCart);
+    overlay?.addEventListener('click', closeCart);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCart(); });
+
+    // Tipo de pedido (retirada / entrega)
+    function currentTipo() { const el = document.querySelector('[data-tipo]:checked'); return el ? el.value : 'retirada'; }
+    function syncTipo() {
+      const entrega = currentTipo() === 'entrega';
+      const addr = document.querySelector('[data-addrfield]');
+      const note = document.querySelector('[data-deliverynote]');
+      const dn = document.querySelector('[data-delivnote]');
+      if (addr) addr.hidden = !entrega;
+      if (note) note.hidden = !entrega;
+      if (dn) dn.hidden = !entrega;
+    }
+    document.querySelectorAll('[data-tipo]').forEach((r) => r.addEventListener('change', syncTipo));
+    syncTipo();
+
+    // Finalizar no WhatsApp
+    document.querySelector('[data-checkout]')?.addEventListener('click', () => {
+      const keys = Object.keys(cart);
+      if (!keys.length) return;
+      const name = (document.querySelector('[data-cartname]')?.value || '').trim();
+      const notes = (document.querySelector('[data-cartnotes]')?.value || '').trim();
+      const tipo = currentTipo();
+      const { total } = totals();
+      let msg = 'Olá, Frango da Família! Meu pedido:\n';
+      keys.forEach((n) => { msg += '\n• ' + cart[n].qty + 'x ' + n + ' — ' + brl(cart[n].preco * cart[n].qty); });
+      msg += '\n\nTotal: ' + brl(total);
+      if (tipo === 'entrega') {
+        const addr = (document.querySelector('[data-cartaddr]')?.value || '').trim();
+        msg += '\n\nTipo: Entrega';
+        if (addr) msg += '\nEndereço: ' + addr;
+        msg += '\nTaxa de entrega: R$ 10 a R$ 12 (a confirmar conforme localização)';
+      } else {
+        msg += '\n\nTipo: Retirada no local';
+      }
+      if (name) msg += '\n\nNome: ' + name;
+      if (notes) msg += '\nObservações: ' + notes;
+      const digits = String(whatsapp).replace(/\D/g, '');
+      window.open('https://wa.me/' + digits + '?text=' + encodeURIComponent(msg), '_blank');
+    });
+
+    render();
+  })();
+</script>
