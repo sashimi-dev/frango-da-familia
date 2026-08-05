@@ -1,21 +1,21 @@
 ---
 import { whatsappLink } from '../lib/whatsapp';
-import { imgSrc } from '../lib/img';
 import WaIcon from './WaIcon.astro';
-interface Props { titulo: string; texto: string; imagem: string; whatsapp: string; mensagem: string; }
-const { titulo, texto, imagem, whatsapp, mensagem } = Astro.props;
+interface Props { titulo: string; texto: string; imagem?: string; whatsapp: string; mensagem: string; }
+const { titulo, texto, whatsapp, mensagem } = Astro.props;
 const waHref = whatsappLink(whatsapp, mensagem);
-const mostrar = Boolean(titulo || texto);
 ---
-{mostrar && (
-  <section class="combo section" id="combo">
-    <div class="container">
-      <img class="promo-img" src={imgSrc(imagem)} alt={titulo} loading="lazy" decoding="async" />
-      <div>
-        <h2>{titulo}</h2>
-        <p>{texto}</p>
-        <a class="btn btn-gold" href={waHref} target="_blank" rel="noopener"><WaIcon /> Reservar no Zap</a>
-      </div>
-    </div>
-  </section>
-)}
+<section class="rvideo-band" id="combo" aria-label="Nosso frango assando na hora">
+  <video class="rvideo" autoplay muted loop playsinline preload="metadata" poster="/images/roastery-poster.jpg">
+    <source src="/videos/roastery.webm" type="video/webm" />
+    <source src="/videos/roastery.mp4" type="video/mp4" />
+  </video>
+  <img class="rvideo-fallback" src="/images/roastery-poster.jpg" alt="Frango assando no forno do Frango da Família, em Luzimangues" loading="lazy" decoding="async" />
+  <div class="rvideo-scrim"></div>
+  <div class="rvideo-inner container">
+    <span class="rvideo-kicker">Direto do nosso forno</span>
+    {titulo && <h2>{titulo}</h2>}
+    {texto && <p>{texto}</p>}
+    <a class="btn btn-gold" href={waHref} target="_blank" rel="noopener"><WaIcon /> Peça pelo WhatsApp</a>
+  </div>
+</section>

@@ -104,7 +104,7 @@ const jsonld = {
     <div class="container">{info.aviso_semana}</div>
   </div>
   <MenuSection itens={itens} whatsapp={info.whatsapp} mensagemBase={info.mensagem_whatsapp} ordemCategorias={ordemCategorias} categoriasFimDeSemana={info.categorias_fim_de_semana} />
-  <Combo titulo={info.promo_titulo} texto={info.promo_texto} imagem={info.promo_imagem} whatsapp={info.whatsapp} mensagem={`${info.mensagem_whatsapp} ${info.promo_titulo}`} />
+  <Combo titulo={info.promo_titulo} texto={info.promo_texto} imagem={info.promo_imagem} whatsapp={info.whatsapp} mensagem={info.mensagem_whatsapp} />
   <Story whatsapp={info.whatsapp} mensagem={info.mensagem_whatsapp} titulo={info.historia_titulo} texto={info.historia_texto} imagem={info.historia_imagem} assinatura={info.historia_assinatura} />
   <Reviews />
   <Instagram handle={info.instagram_handle} url={info.instagram_url} embed={info.instagram_embed} posts={info.instagram_posts} />
