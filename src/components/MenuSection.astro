@@ -1,6 +1,9 @@
 ---
 import MenuItem from './MenuItem.astro';
+import AddControl from './AddControl.astro';
 interface Item { nome: string; descricao: string; preco: string; categoria: string; foto: string; ordem: number; }
+// Categorias mostradas como lista compacta (ex.: bebidas), em vez de cards com foto.
+const categoriasLista = ['Bebidas'];
 interface Props { itens: Item[]; whatsapp: string; mensagemBase: string; ordemCategorias: string[]; }
 const { itens, whatsapp, mensagemBase, ordemCategorias } = Astro.props;
 
@@ -28,11 +31,26 @@ for (const c of ordenadas) porCategoria[c].sort((a, b) => a.ordem - b.ordem);
     {ordenadas.map((cat) => (
       <div class="cat" id={slug(cat)}>
         <h3>{cat}</h3>
-        <div class="grid">
-          {porCategoria[cat].map((item) => (
-            <MenuItem nome={item.nome} descricao={item.descricao} preco={item.preco} foto={item.foto} whatsapp={whatsapp} mensagemBase={mensagemBase} />
-          ))}
-        </div>
+        {categoriasLista.includes(cat) ? (
+          <div class="drink-list">
+            {porCategoria[cat].map((item) => (
+              <div class="drink-row">
+                <div class="drink-info">
+                  <span class="drink-nome">{item.nome}</span>
+                  {item.descricao && <span class="drink-desc">{item.descricao}</span>}
+                </div>
+                <span class="drink-price"><small>R$</small> {item.preco}</span>
+                <AddControl nome={item.nome} preco={item.preco} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="grid">
+            {porCategoria[cat].map((item) => (
+              <MenuItem nome={item.nome} descricao={item.descricao} preco={item.preco} foto={item.foto} whatsapp={whatsapp} mensagemBase={mensagemBase} />
+            ))}
+          </div>
+        )}
       </div>
     ))}
   </div>

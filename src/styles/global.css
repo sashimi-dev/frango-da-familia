@@ -267,3 +267,20 @@ body.cart-open{overflow:hidden}
 
 /* garante que o atributo hidden sempre esconda (vence display:flex etc.) */
 [hidden]{display:none !important}
+
+/* ---------- Bebidas: lista compacta ---------- */
+.drink-list{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.drink-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drink-row:last-child{border-bottom:none}
+.drink-info{display:flex;flex-direction:column;min-width:0}
+.drink-nome{font-weight:700;color:var(--wood);font-size:1.06rem;font-family:var(--display)}
+.drink-desc{color:var(--muted);font-size:.85rem}
+.drink-price{font-weight:800;color:var(--brand-dark);font-size:1.18rem;white-space:nowrap}
+.drink-price small{font-weight:700;font-size:.72rem;color:var(--muted)}
+@media (max-width:480px){
+  .drink-row{grid-template-columns:1fr auto;grid-template-areas:"info price" "add add";row-gap:10px}
+  .drink-info{grid-area:info}
+  .drink-price{grid-area:price}
+  .drink-row .add{grid-area:add}
+  .drink-row .add-btn{width:100%;justify-content:center}
+}

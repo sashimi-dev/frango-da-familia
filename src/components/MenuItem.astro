@@ -1,5 +1,6 @@
 ---
 import { imgSrc, slugify } from '../lib/img';
+import AddControl from './AddControl.astro';
 
 interface Props {
   nome: string;
@@ -22,14 +23,7 @@ const fotoSrc = temFoto ? `/images/menu/${slugify(nome)}.jpg` : imgSrc(foto);
     <p class="desc">{descricao}</p>
     <div class="row">
       <span class="price"><small>R$</small> {preco}</span>
-      <div class="add" data-additem data-nome={nome} data-preco={preco}>
-        <button type="button" class="mini add-btn" data-add aria-label={`Adicionar ${nome} ao pedido`}>+ Adicionar</button>
-        <div class="stepper" data-stepper hidden>
-          <button type="button" class="step" data-dec aria-label={`Diminuir ${nome}`}>−</button>
-          <span class="qty" data-qty>1</span>
-          <button type="button" class="step" data-inc aria-label={`Aumentar ${nome}`}>+</button>
-        </div>
-      </div>
+      <AddControl nome={nome} preco={preco} />
     </div>
   </div>
 </article>

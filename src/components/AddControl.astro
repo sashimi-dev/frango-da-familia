@@ -1,0 +1,12 @@
+---
+interface Props { nome: string; preco: string; }
+const { nome, preco } = Astro.props;
+---
+<div class="add" data-additem data-nome={nome} data-preco={preco}>
+  <button type="button" class="mini add-btn" data-add aria-label={`Adicionar ${nome} ao pedido`}>+ Adicionar</button>
+  <div class="stepper" data-stepper hidden>
+    <button type="button" class="step" data-dec aria-label={`Diminuir ${nome}`}>−</button>
+    <span class="qty" data-qty>1</span>
+    <button type="button" class="step" data-inc aria-label={`Aumentar ${nome}`}>+</button>
+  </div>
+</div>
