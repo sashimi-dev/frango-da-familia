@@ -1,7 +1,7 @@
 ---
 nome: Pastel de Frango com Catupiry
 descricao: Massa sequinha e crocante, fritinha na hora, com frango desfiado no tempero da casa e muito Catupiry cremoso. Um clássico que derrete na boca.
-preco: '30'
+preco: '9'
 categoria: Pastéis
 foto: /images/Generated Image August 04, 2026 - 4_40PM.jpg
 ordem: 99
