@@ -1,9 +1,9 @@
 ---
 nome: Coca-Cola 600 ml
 descricao: ''
-preco: '7,00'
+preco: 7,00
 categoria: Bebidas
 foto: /images/menu/placeholder.svg
-ordem: 3
+ordem: 2
 disponivel: true
 ---
