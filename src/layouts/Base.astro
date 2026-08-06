@@ -7,6 +7,8 @@ interface Props {
   image?: string;
   jsonld?: unknown;
   preloadImage?: string;
+  adsId?: string;
+  adsLabel?: string;
 }
 const {
   title,
@@ -14,6 +16,8 @@ const {
   image = '/images/og-image.jpg',
   jsonld,
   preloadImage,
+  adsId,
+  adsLabel,
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://frango-da-familia.pages.dev');
@@ -76,6 +80,23 @@ const ogImage = new URL(image, site).href;
 
     {jsonld && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+    )}
+
+    {adsId && (
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${adsId}`}></script>
+      <script is:inline define:vars={{ adsId, adsLabel }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', adsId);
+        // Conta clique nos botões do WhatsApp como conversão no Google Ads.
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+          if (!a || !adsLabel) return;
+          var sendTo = adsLabel.indexOf('/') > -1 ? adsLabel : adsId + '/' + adsLabel;
+          gtag('event', 'conversion', { send_to: sendTo });
+        }, true);
+      </script>
     )}
   </head>
   <body>

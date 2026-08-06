@@ -27,6 +27,9 @@ const site = defineCollection({
     mapa_url: z.string().default(''),
     geo_lat: z.string().default(''),
     geo_lng: z.string().default(''),
+    // Google Ads: rastreio de conversão do clique no WhatsApp (sem precisar do GA4).
+    google_ads_id: z.string().default(''), // Ex.: AW-123456789
+    google_ads_label: z.string().default(''), // rótulo da conversão
     horarios: z.array(
       z.object({
         dias: z.string(),
