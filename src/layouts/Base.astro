@@ -101,5 +101,25 @@ const ogImage = new URL(image, site).href;
   </head>
   <body>
     <slot />
+    <script is:inline>
+      // Corrige a rolagem para âncoras (#info etc.) depois que conteúdos lentos
+      // (ex.: feed do Instagram) carregam e mudam a altura da página.
+      (function () {
+        var userScrolled = false;
+        function markScrolled() { userScrolled = true; }
+        window.addEventListener('wheel', markScrolled, { passive: true, once: true });
+        window.addEventListener('touchmove', markScrolled, { passive: true, once: true });
+        function toHash(force) {
+          if (!location.hash) return;
+          if (userScrolled && !force) return;
+          var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+          if (el) el.scrollIntoView();
+        }
+        window.addEventListener('load', function () {
+          toHash(); setTimeout(function () { toHash(); }, 500); setTimeout(function () { toHash(); }, 1500);
+        });
+        window.addEventListener('hashchange', function () { userScrolled = false; toHash(true); });
+      })();
+    </script>
   </body>
 </html>
