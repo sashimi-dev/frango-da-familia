@@ -187,6 +187,13 @@ const { whatsapp } = Astro.props;
       }
       if (name) msg += '\n\nNome: ' + name;
       if (notes) msg += '\nObservações: ' + notes;
+      // Conta o pedido do carrinho como conversão no Google Ads.
+      try {
+        if (cfg.adsId && cfg.adsLabel && window.gtag) {
+          var sendTo = cfg.adsLabel.indexOf('/') > -1 ? cfg.adsLabel : cfg.adsId + '/' + cfg.adsLabel;
+          window.gtag('event', 'conversion', { send_to: sendTo });
+        }
+      } catch (e) {}
       const digits = String(whatsapp).replace(/\D/g, '');
       window.open('https://wa.me/' + digits + '?text=' + encodeURIComponent(msg), '_blank');
     });
