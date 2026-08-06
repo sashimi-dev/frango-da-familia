@@ -77,6 +77,13 @@ collections:
             required: false
             hint: "Essas categorias só podem ser pedidas aos sábados, domingos e feriados (ex.: Frangos e Carnes, Porções). Nos dias de semana aparecem bloqueadas."
             field: { name: categoria, label: "Categoria", widget: string }
+          - name: categorias_dias_de_semana
+            label: "Categorias só de segunda a sexta"
+            widget: list
+            required: false
+            hint: "Essas categorias só podem ser pedidas de segunda a sexta (ex.: Pastéis). No fim de semana e feriados aparecem bloqueadas."
+            field: { name: categoria, label: "Categoria", widget: string }
+          - { name: aviso_fim_semana, label: "Aviso exibido no fim de semana e feriados", widget: text, required: false, hint: "Mensagem mostrada aos sábados, domingos e feriados." }
           - name: feriados
             label: "Feriados locais (datas extras)"
             widget: list

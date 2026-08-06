@@ -38,6 +38,11 @@ const site = defineCollection({
     ),
     // Disponibilidade: categorias que só podem ser pedidas sáb, dom e feriados.
     categorias_fim_de_semana: z.array(z.string()).default(['Frangos e Carnes', 'Porções']),
+    // Categorias que só podem ser pedidas de segunda a sexta (ex.: Pastéis).
+    categorias_dias_de_semana: z.array(z.string()).default(['Pastéis']),
+    aviso_fim_semana: z
+      .string()
+      .default('Aos sábados, domingos e feriados: frango, costela e porções. Pastéis: de segunda a sexta.'),
     // Feriados locais extras (AAAA-MM-DD). Os nacionais são automáticos.
     feriados: z.array(z.string()).default([]),
     usar_feriados_nacionais: z.boolean().default(true),

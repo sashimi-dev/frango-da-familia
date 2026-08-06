@@ -24,6 +24,10 @@
     "Frangos e Carnes",
     "Porções"
   ],
+  "categorias_dias_de_semana": [
+    "Pastéis"
+  ],
+  "aviso_fim_semana": "Aos sábados, domingos e feriados: frango, costela e porções. Pastéis: de segunda a sexta.",
   "feriados": [],
   "usar_feriados_nacionais": true,
   "aviso_semana": "De segunda a sexta servimos apenas pastéis e bebidas. Frango, costela e porções: aos sábados, domingos e feriados.",

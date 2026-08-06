@@ -107,7 +107,10 @@ const jsonld = {
   <div class="weekday-note" data-weekdaynote hidden>
     <div class="container">{info.aviso_semana}</div>
   </div>
-  <MenuSection itens={itens} whatsapp={info.whatsapp} mensagemBase={info.mensagem_whatsapp} ordemCategorias={ordemCategorias} categoriasFimDeSemana={info.categorias_fim_de_semana} />
+  <div class="weekday-note" data-fullmenunote hidden>
+    <div class="container">{info.aviso_fim_semana}</div>
+  </div>
+  <MenuSection itens={itens} whatsapp={info.whatsapp} mensagemBase={info.mensagem_whatsapp} ordemCategorias={ordemCategorias} categoriasFimDeSemana={info.categorias_fim_de_semana} categoriasDiasDeSemana={info.categorias_dias_de_semana} />
   <Combo titulo={info.promo_titulo} texto={info.promo_texto} imagem={info.promo_imagem} whatsapp={info.whatsapp} mensagem={info.mensagem_whatsapp} />
   <Story whatsapp={info.whatsapp} mensagem={info.mensagem_whatsapp} titulo={info.historia_titulo} texto={info.historia_texto} imagem={info.historia_imagem} assinatura={info.historia_assinatura} />
   <Reviews />
@@ -151,6 +154,7 @@ const jsonld = {
       document.querySelectorAll('[data-today-horas]').forEach((el) => { if (horas) el.textContent = horas; });
 
       document.querySelectorAll('[data-weekdaynote]').forEach((el) => { el.hidden = fullMenu; });
+      document.querySelectorAll('[data-fullmenunote]').forEach((el) => { el.hidden = !fullMenu; });
     })();
   </script>
 </Base>
