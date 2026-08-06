@@ -6,6 +6,8 @@
   "telefone": "(63) 99255-3014",
   "endereco": "Avenida A, Quadra 37, Lote 66\n(Avenida do Posto Norte Sul)\nSetor Jardim do Porto\nLuzimangues — Porto Nacional - TO",
   "mapa_url": "https://maps.app.goo.gl/19z4GGpg8NBhTbHJA",
+  "geo_lat": "-10.2041766",
+  "geo_lng": "-48.4558298",
   "horarios": [
     {
       "dias": "Segunda a Sexta",

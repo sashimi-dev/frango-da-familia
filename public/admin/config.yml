@@ -60,6 +60,8 @@ collections:
           - { name: telefone, label: "Telefone (exibição)", widget: string, required: false }
           - { name: endereco, label: "Endereço", widget: text }
           - { name: mapa_url, label: "Link do mapa (Google Maps)", widget: string, required: false }
+          - { name: geo_lat, label: "Latitude (mapa)", widget: string, required: false, hint: "No Google Maps, clique com o botão direito no ponto exato -> aparecem 2 números. O 1º é a latitude. Ex.: -10.2846" }
+          - { name: geo_lng, label: "Longitude (mapa)", widget: string, required: false, hint: "O 2º número (longitude). Ex.: -48.3765" }
           - name: horarios
             label: "Horários de funcionamento"
             widget: list

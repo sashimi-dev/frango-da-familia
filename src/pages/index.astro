@@ -82,6 +82,10 @@ const jsonld = {
     addressCountry: 'BR',
   },
   areaServed: 'Luzimangues, Porto Nacional - TO',
+  ...(info.geo_lat && info.geo_lng
+    ? { geo: { '@type': 'GeoCoordinates', latitude: Number(info.geo_lat), longitude: Number(info.geo_lng) } }
+    : {}),
+  hasMap: info.mapa_url || undefined,
   sameAs: [info.instagram_url].filter(Boolean),
   openingHoursSpecification: openingHoursSpec(schedule),
   hasMenu: { '@type': 'Menu', hasMenuSection },

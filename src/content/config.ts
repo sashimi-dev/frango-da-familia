@@ -25,6 +25,8 @@ const site = defineCollection({
     telefone: z.string().default(''),
     endereco: z.string(),
     mapa_url: z.string().default(''),
+    geo_lat: z.string().default(''),
+    geo_lng: z.string().default(''),
     horarios: z.array(
       z.object({
         dias: z.string(),
