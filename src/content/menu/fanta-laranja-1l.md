@@ -4,6 +4,6 @@ descricao: ''
 preco: 8,00
 categoria: Bebidas
 foto: /images/menu/placeholder.svg
-ordem: 3
+ordem: 4
 disponivel: true
 ---
