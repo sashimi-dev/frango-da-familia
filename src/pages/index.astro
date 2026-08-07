@@ -71,7 +71,12 @@ const jsonld = {
   '@type': 'Restaurant',
   name: 'Frango da Família',
   description,
-  image: `${siteUrl}/images/og-image.jpg`,
+  image: [
+    `${siteUrl}/images/hero-frango.jpg`,
+    `${siteUrl}/images/menu/frango-inteiro.jpg`,
+    `${siteUrl}/images/menu/costela-assada-kg.jpg`,
+    `${siteUrl}/images/og-image.jpg`,
+  ],
   url: siteUrl,
   telephone: `+${info.whatsapp}`,
   servesCuisine: ['Frango assado', 'Comida brasileira'],
