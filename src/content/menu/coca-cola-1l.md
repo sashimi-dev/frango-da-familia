@@ -1,7 +1,7 @@
 ---
 nome: Coca-Cola 1 litro
 descricao: ''
-preco: 8,00
+preco: 10,00
 categoria: Bebidas
 foto: /images/menu/placeholder.svg
 ordem: 2
