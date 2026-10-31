@@ -1,7 +1,7 @@
 ---
 nome: Meio Frango
 descricao: Meio frango assado, suculento e no ponto certo. Ideal para uma ou duas pessoas.
-preco: 26,00
+preco: '27,50'
 categoria: Frangos e Carnes
 foto: /images/Generated Image August 04, 2026 - 5_09PM.jpg
 ordem: 2
